@@ -1,6 +1,6 @@
 {
   "name": "pruebasbackend",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Proyecto base de Backend con Express",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/mapf98/pruebas-backend#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1"
   },

@@ -1,7 +1,10 @@
 require("dotenv").config();
-const express = require('express');
+import compression from "compression";
+import express from 'express';
 const app = express();
 const port = process.env.PORT;
+
+app.use(compression());
 
 app.get('/', (req, res) => res.send('Hello World!'));
 

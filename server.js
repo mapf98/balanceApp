@@ -8,6 +8,11 @@ var bodyParser = require('body-parser');
 var errorhandler = require("errorhandler");
 var isProduction = process.env.NODE_ENV === "production";
 
+app.use(compression());
+app.use("/static", express.static(path.join(__dirname, "public")));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 //Conexion BD
 var mysql = require("mysql");
 var connection = mysql.createConnection({
@@ -21,7 +26,7 @@ var connection = mysql.createConnection({
 connection.connect();
 //
 
-app.get("/prueba", function (req, res) {
+app.get("/api/prueba", function (req, res) {
   let personas = [];
   connection.query("SELECT * FROM PERSONA AS personas", function(
     error,
@@ -37,10 +42,38 @@ app.get("/prueba", function (req, res) {
   });
 });
 
-app.use(compression());
-app.use("/static", express.static(path.join(__dirname, "public")));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+
+app.post("/api/createuser", function(req, res) {
+  let nombre = req.body.nombre;
+  let edad = req.body.edad;
+  connection.query(
+    "INSERT INTO PERSONA (NOMBRE, EDAD) VALUES (?, ?);", [nombre, edad],
+    function(error, results, fields) {
+      if (error) {
+        res.send(error);
+      } else {
+        res.sendStatus('200');
+      }
+    }
+  );
+});
+
+app.get("/api/prueba/:id", function(req, res) {
+  let personas = [];
+  let test = req.params.id;
+  connection.query("SELECT * FROM PERSONA AS personas WHERE ID = ? ",[test], function(
+    error,
+    results,
+    fields
+  ) {
+    if (error) {
+      res.send(error);
+    } else {
+      personas = results;
+      res.json({ data: personas });
+    }
+  });
+});
 
 if (!isProduction) {
   app.use(errorhandler());

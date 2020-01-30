@@ -7,73 +7,23 @@ var path = require("path");
 var bodyParser = require('body-parser');
 var errorhandler = require("errorhandler");
 var isProduction = process.env.NODE_ENV === "production";
+const connectionBD = require("./config/dbmysql.js");
 
 app.use(compression());
 app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//Conexion BD
-var mysql = require("mysql");
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "MIGuel33&&",
-  database: "dbexpress",
-  insecureAuth: true
+app.use(function(req, res, next) {
+  req.con = connectionBD;
+  next();
 });
 
-connection.connect();
-//
+// include router
+const router = require("./routes/router.js")
 
-app.get("/api/prueba", function (req, res) {
-  let personas = [];
-  connection.query("SELECT * FROM PERSONA AS personas", function(
-    error,
-    results,
-    fields
-  ) {
-    if (error) {
-      res.send(error);
-    } else {
-      personas = results;
-      res.json({ data: personas });
-    }
-  });
-});
-
-
-app.post("/api/createuser", function(req, res) {
-  let nombre = req.body.nombre;
-  let edad = req.body.edad;
-  connection.query(
-    "INSERT INTO PERSONA (NOMBRE, EDAD) VALUES (?, ?);", [nombre, edad],
-    function(error, results, fields) {
-      if (error) {
-        res.send(error);
-      } else {
-        res.sendStatus('200');
-      }
-    }
-  );
-});
-
-app.get("/api/prueba/:id", function(req, res) {
-  let personas = [];
-  let test = req.params.id;
-  connection.query("SELECT * FROM PERSONA AS personas WHERE ID = ? ",[test], function(
-    error,
-    results,
-    fields
-  ) {
-    if (error) {
-      res.send(error);
-    } else {
-      personas = results;
-      res.json({ data: personas });
-    }
-  });
-});
+// routing
+app.use("/api", router)
 
 if (!isProduction) {
   app.use(errorhandler());
@@ -114,3 +64,59 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+/*
+
+
+app.get("/api/prueba", function (req, res) {
+  let personas = [];
+  connectionBD.query("SELECT * FROM PERSONA AS personas", function(
+    error,
+    results,
+    fields
+  ) {
+    if (error) {
+      res.send(error);
+    } else {
+      personas = results;
+      res.json({ data: personas });
+    }
+  });
+});
+
+
+app.post("/api/createuser", function(req, res) {
+  let nombre = req.body.nombre;
+  let edad = req.body.edad;
+  connectionBD.query(
+    "INSERT INTO PERSONA (NOMBRE, EDAD) VALUES (?, ?);", [nombre, edad],
+    function(error, results, fields) {
+      if (error) {
+        res.send(error);
+      } else {
+        res.sendStatus('200');
+      }
+    }
+  );
+});
+
+app.get("/api/prueba/:id", function(req, res) {
+  let personas = [];
+  let test = req.params.id;
+  connectionBD.query("SELECT * FROM PERSONA AS personas WHERE ID = ? ",[test], function(
+    error,
+    results,
+    fields
+  ) {
+    if (error) {
+      res.send(error);
+    } else {
+      personas = results;
+      res.json({ data: personas });
+    }
+  });
+});
+
+
+
+*/

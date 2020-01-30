@@ -1,4 +1,4 @@
-# Backend Express/Nodejs (v0.1.0)
+# Backend Express/Nodejs (v1.0.0)
 
 Proyecto base para la creación de una API REST con Express y Nodejs
 

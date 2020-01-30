@@ -1,9 +1,9 @@
 const models = require("../models/models.js");
 
 module.exports = {
-  getUsers: function (req, res) {
+  getUsers: function(req, res) {
     let usuarios = [];
-    models.getUsers(req.con, function (error, results) {
+    models.getUsers(req.con, function(error, results) {
       if (error) {
         res.send(error);
       } else {
@@ -12,32 +12,24 @@ module.exports = {
       }
     });
   },
-
-  /*create: function(req, res) {
-    res.render("biodata/create");
-  },
-
-  store: function(req, res) {
-    Biodata.create(req.con, req.body, function(err) {
-      res.redirect("/biodata");
+  getUserById: function(req, res) {
+    models.getUserById(req.con, req.params.id, function (error, results) {
+      let usuarios = {};
+      if (error) {
+        res.send(error);
+      } else {
+        usuario = results;
+        res.json({ data: usuario });
+      }
     });
   },
-
-  edit: function(req, res) {
-    Biodata.getById(req.con, req.params.id, function(err, rows) {
-      res.render("biodata/edit", { data: rows[0] });
+  createUser: function (req, res) {
+    models.createUser(req.con, req.body, function (error, results) {
+      if (error) {
+        res.send(error);
+      } else {
+        res.sendStatus("200");
+      }
     });
-  },
-
-  update: function(req, res) {
-    Biodata.update(req.con, req.body, req.params.id, function(err) {
-      res.redirect("/biodata");
-    });
-  },
-
-  destroy: function(req, res) {
-    Biodata.destroy(req.con, req.params.id, function(err) {
-      res.redirect("/biodata");
-    });
-  }*/
+  }
 };

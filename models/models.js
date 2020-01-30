@@ -1,32 +1,19 @@
 module.exports = {
-  getUsers: function (con, callback) {
+  getUsers: function(con, callback) {
     con.query("SELECT * FROM PERSONA", callback);
   },
-
-  /*getById: function(con, id, callback) {
-    con.query(`SELECT * FROM biodata WHERE id_biodata = ${id}`, callback);
-  },
-
-  create: function(con, data, callback) {
+  getUserById: function(con, id, callback) {
     con.query(
-      `INSERT INTO biodata SET 
-      nama = '${data.nama}', 
-      alamat = '${data.alamat}'`,
+      "SELECT * FROM PERSONA AS personas WHERE ID = ? ",
+      [id],
       callback
     );
   },
-
-  update: function(con, data, id, callback) {
+  createUser: function (con, body, callback) {
     con.query(
-      `UPDATE biodata SET 
-      nama = '${data.nama}', 
-      alamat = '${data.alamat}' 
-      WHERE id_biodata = ${id}`,
+      "INSERT INTO PERSONA (NOMBRE, EDAD) VALUES (?, ?);",
+      [body.nombre, body.edad],
       callback
     );
-  },
-
-  destroy: function(con, id, callback) {
-    con.query(`DELETE FROM biodata WHERE id_biodata = ${id}`, callback);
-  }*/
+  }
 };

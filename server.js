@@ -20,10 +20,10 @@ app.use(function(req, res, next) {
 });
 
 // include router
-const router = require("./routes/router.js")
+const router = require("./routes/router.js");
 
 // routing
-app.use("/api", router)
+app.use("/api", router);
 
 if (!isProduction) {
   app.use(errorhandler());

@@ -2,6 +2,14 @@
 
 Proyecto base para la creación de una API REST con Express y Nodejs
 
+### Mejoras por incluir 📋
+
+- Configuración de .env para desarrollo y producción
+- Rutas dinámicas
+- Autenticación
+- Puesta en producción
+
+
 ## Comenzando 🚀
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._

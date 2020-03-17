@@ -1,14 +1,8 @@
-# Backend Express/Nodejs (v1.0.0)
+# BalanceApp Backend API (v0.1.0)
 
-Proyecto base para la creación de una API REST con Express y Nodejs
+Proyecto de finanzas personales.
 
 ### Mejoras por incluir 📋
-
-- Configuración de .env para desarrollo y producción
-- Rutas dinámicas
-- Autenticación
-- Puesta en producción
-
 
 ## Comenzando 🚀
 

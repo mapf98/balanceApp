@@ -1,25 +1,29 @@
 module.exports = {
-  getUsers: function(con, callback) {
-    con.query("SELECT * FROM USUARIO", callback);
+  getCurrencies: function(con, callback) {
+    con.query("SELECT * FROM MONEDA", callback);
   },
-  getUser: function(con, id, callback) {
-    con.query("SELECT * FROM USUARIO WHERE user_id = ? ", [id], callback);
+  getCurrency: function(con, id, callback) {
+    con.query("SELECT * FROM MONEDA WHERE currency_id = ? ", [id], callback);
   },
-  createUser: function(con, body, callback) {
+  createCurrency: function(con, body, callback) {
     con.query(
-      "INSERT INTO USUARIO (first_name, last_name, email, bd_date) VALUES (?, ?, ?, ?);",
-      [body.first_name, body.last_name, body.email, body.bd_date],
+      "INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code) VALUES (?, ?, ?);",
+      [
+        body.currency_name,
+        body.currency_symbol,
+        body.currency_iso_code
+      ],
       callback
     );
   },
-  updateUser: function(con, id, body, callback) {
+  updateCurrency: function(con, id, body, callback) {
     con.query(
-      "UPDATE USUARIO SET first_name = ?, last_name = ?, email = ?, bd_date = ? WHERE user_id = ?;",
-      [body.first_name, body.last_name, body.email, body.bd_date, id],
+      "UPDATE MONEDA SET currency_name = ?, currency_symbol = ?, currency_iso_code = ? WHERE currency_id = ?;",
+      [body.currency_name, body.currency_symbol, body.currency_iso_code, id],
       callback
     );
   },
-  deleteUser: function(con, id, callback) {
-    con.query("DELETE FROM USUARIO WHERE user_id = ?;", [id], callback);
+  deleteCurrency: function(con, id, callback) {
+    con.query("DELETE FROM MONEDA WHERE currency_id = ?;", [id], callback);
   }
 };

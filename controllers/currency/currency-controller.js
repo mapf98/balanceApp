@@ -1,30 +1,33 @@
-const userModels = require("../../models/user/user-models.js");
+const currencyModels = require("../../models/currency/currency-models.js");
 
 module.exports = {
-  getUsers: function(req, res) {
-    let users = [];
-    userModels.getUsers(req.con, function(error, results) {
+  getCurrencies: function(req, res) {
+    let currencies = [];
+    currencyModels.getCurrencies(req.con, function(error, results) {
       if (error) {
         res.send(error);
       } else {
-        users = results;
-        res.json({ data: users });
+        currencies = results;
+        res.json({ data: currencies });
       }
     });
   },
-  getUser: function(req, res) {
-    userModels.getUser(req.con, req.params.id, function(error, results) {
-      let user = {};
+  getCurrency: function(req, res) {
+    currencyModels.getCurrency(req.con, req.params.id, function(
+      error,
+      results
+    ) {
+      let currency = {};
       if (error) {
         res.send(error);
       } else {
-        user = results;
-        res.json({ data: user });
+        currency = results;
+        res.json({ data: currency });
       }
     });
   },
-  createUser: function(req, res) {
-    userModels.createUser(req.con, req.body, function(error, results) {
+  createCurrency: function(req, res) {
+    currencyModels.createCurrency(req.con, req.body, function(error, results) {
       if (error) {
         res.send(error);
       } else {
@@ -32,8 +35,8 @@ module.exports = {
       }
     });
   },
-  updateUser: function(req, res) {
-    userModels.updateUser(req.con, req.params.id, req.body, function(
+  updateCurrency: function(req, res) {
+    currencyModels.updateCurrency(req.con, req.params.id, req.body, function(
       error,
       results
     ) {
@@ -44,8 +47,11 @@ module.exports = {
       }
     });
   },
-  deleteUser: function(req, res) {
-    userModels.deleteUser(req.con, req.params.id, function(error, results) {
+  deleteCurrency: function(req, res) {
+    currencyModels.deleteCurrency(req.con, req.params.id, function(
+      error,
+      results
+    ) {
       if (error) {
         res.send(error);
       } else {

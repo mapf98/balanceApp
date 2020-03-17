@@ -1,4 +1,4 @@
-# BalanceApp Backend API (v0.1.0)
+# BalanceApp Backend API (v0.2.0)
 
 Proyecto de finanzas personales.
 

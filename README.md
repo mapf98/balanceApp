@@ -1,5 +1,7 @@
 # BalanceApp Backend API (v0.2.0)
 
+[![Balance API v0.2.0][]][npm-url]
+
 API para Balance, aplicación de finanzas personales.
 
 ## Comenzando 🚀

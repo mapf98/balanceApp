@@ -1,4 +1,4 @@
-# BalanceApp API (v0.3.0)
+# BalanceApp API (v0.4.0)
 
 API para Balance, aplicación de finanzas personales.
 

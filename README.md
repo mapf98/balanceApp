@@ -72,7 +72,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 + **Miguel Antonio Peña Fraga**
 + **Alba Sofía Sánches Silvestre**
 
-### Mejoras por incluir 📋
+## Mejoras por incluir 📋
 
 #### API
 

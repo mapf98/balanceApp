@@ -32,73 +32,63 @@ npm start
 
 **Nota:** si no eres colaborador, realiza un Fork del proyecto para tener una versión del repositorio actual.
 
-### Instalación 🔧
-
-```
-Da un ejemplo
-```
-
-_Y repite_
-
-```
-hasta finalizar
-```
-
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
 ## Ejecutando las pruebas ⚙️
 
-_Explica como ejecutar las pruebas automatizadas para este sistema_
+_Ejecución de pruebas unitarias por definir_
 
 ### Analice las pruebas end-to-end 🔩
 
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
+_Ejecución de pruebas end2end por definir_
 
 ### Y las pruebas de estilo de codificación ⌨️
 
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
+_Por definir_
 
 ## Despliegue 📦
 
-_Agrega notas adicionales sobre como hacer deploy_
+_Por definir_
 
 ## Construido con 🛠️
 
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
+* Express.js
+* NPM
+* Body Parser
+* Path
+* Server Static
+* Compression
+* Dotenv
+* Errorhandler
 
 ## Wiki 📖
 
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
+_Por definir_
 
 ## Versionado 📌
 
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
+Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/mapf98/balanceApp/tags).
 
 ## Autores ✒️
 
-- **Miguel Antonio Peña Fraga** - _Trabajo Inicial_
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto.
-
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
-## Expresiones de Gratitud 🎁
-
-- Comenta a otros sobre este proyecto 📢
-- Invita una cerveza 🍺 o un café ☕ a alguien del equipo.
-- Da las gracias públicamente 🤓.
-- etc.
+**Miguel Antonio Peña Fraga**
+**Alba Sofía Sánches Silvestre**
 
 ### Mejoras por incluir 📋
+
+#### API
+
+* Incluir logger de peticiones al servicio.
+* Configurar error handler.
+
+#### Configuraciones de proyecto
+
+* Reglas de estilo de código.
+* Reglas de markdownlint.
+* ENV para producción.
+* Agregar etiqueta de versiones a la API.
+
+### Temas de interés por investigar
+
+* Averiguar uso de rutas dinámicas.
+* Averiguar configuración de CORS.
+* Averiguar uso de COOKIES.
+* Averiguar login con cuentas de google.

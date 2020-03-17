@@ -4,7 +4,7 @@ CREATE TABLE USUARIO (
 	user_id INTEGER NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(20) NOT NULL,
     last_name VARCHAR(20) NOT NULL,
-    email VARCHAR(20) NOT NULL UNIQUE,
+    email VARCHAR(50) NOT NULL UNIQUE,
     bd_date DATE NOT NULL,
     PRIMARY KEY (user_id)
 );
@@ -18,6 +18,8 @@ CREATE TABLE BANCO (
 CREATE TABLE MONEDA (
 	currency_id INTEGER NOT NULL AUTO_INCREMENT,
     currency_name VARCHAR(20) NOT NULL,
+    currency_symbol VARCHAR(5) NOT NULL UNIQUE,
+    currency_iso_code VARCHAR(5) NOT NULL,
 	PRIMARY KEY (currency_id)
 );
 
@@ -37,7 +39,7 @@ CREATE TABLE CUENTA (
 CREATE TABLE TRANSACCION (
 	transaction_id INTEGER NOT NULL AUTO_INCREMENT,
     transaction_total DOUBLE NOT NULL,
-    transaction_concept VARCHAR(6) NOT NULL,
+    transaction_concept VARCHAR(150) NOT NULL,
     transaction_date DATE NOT NULL,
     fk_account_id INTEGER NOT NULL,
 	PRIMARY KEY (transaction_id),

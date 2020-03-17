@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bankController = require("../controllers/bank/bank-controller.js");
+const userController = require("../controllers/user/user-controller.js");
 
 //CRUD USUARIO
 router.get("/users", userController.getUsers);

@@ -1,42 +1,36 @@
 # BalanceApp Backend API (v0.2.0)
 
-[![Balance API v0.2.0][]][npm-url]
-
 API para Balance, aplicación de finanzas personales.
+
+## Pre-requisitos 📋
+
+_Estos son los pre-requisitos necesarios para ejecutar el proyecto y realizar pruebas sobre el mismo:_
+
+* Git
+* NODE y npm
+* MySQL
+* VSCode o cualquier editor de texto
+* Postman o cualquier plataforma de consulta para una API REST con verbos http.
 
 ## Comenzando 🚀
 
 _Estas instrucciones te permitirán obtener una copia (local) del proyecto en funcionamiento para propósitos de análisis, desarrollo y pruebas:_
 
-- Clona el repositorio en tu computadora.
+1. Clona el repositorio en tu computadora.
 
-- En la raíz del proyecto ejecuta el siguiente comando:
+2. En la raíz del proyecto ejecuta el siguiente comando:
 
 ```
 npm install
 ```
 
-- Luego de instalar las dependencias, ejecuta el siguiente comando para iniciar el servidor:
+3. Luego de instalar las dependencias, ejecuta el siguiente comando para iniciar el servidor:
 
 ```
 npm start
 ```
 
 **Nota:** si no eres colaborador, realiza un Fork del proyecto para tener una versión del repositorio actual.
-
-### Tópicos adicionales
-
-#### Comunes
-
-#### Avanzados
-
-Mira **Deployment** para conocer como desplegar el proyecto.
-
-### Pre-requisitos 📋
-
-```
-Da un ejemplo
-```
 
 ### Instalación 🔧
 

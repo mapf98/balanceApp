@@ -11,13 +11,13 @@ CREATE TABLE USUARIO (
 
 CREATE TABLE BANCO (
 	bank_id INTEGER NOT NULL AUTO_INCREMENT,
-    bank_name DOUBLE NOT NULL,
+    bank_name VARCHAR(50) NOT NULL,
 	PRIMARY KEY (bank_id)
 );
 
 CREATE TABLE MONEDA (
 	currency_id INTEGER NOT NULL AUTO_INCREMENT,
-    currency_name DOUBLE NOT NULL,
+    currency_name VARCHAR(20) NOT NULL,
 	PRIMARY KEY (currency_id)
 );
 

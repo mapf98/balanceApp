@@ -69,8 +69,8 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 ## Autores ✒️
 
-**Miguel Antonio Peña Fraga**
-**Alba Sofía Sánches Silvestre**
++ **Miguel Antonio Peña Fraga**
++ **Alba Sofía Sánches Silvestre**
 
 ### Mejoras por incluir 📋
 

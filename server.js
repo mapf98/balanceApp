@@ -63,4 +63,4 @@ app.use(function(err, req, res, next) {
   }});
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Servicio activo - (Puerto para peticiones: ${port})`));

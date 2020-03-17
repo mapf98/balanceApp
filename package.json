@@ -1,7 +1,7 @@
 {
-  "name": "pruebasbackend",
-  "version": "0.4.0",
-  "description": "Proyecto base de Backend con Express",
+  "name": "balance-app",
+  "version": "0.1.0",
+  "description": "BalanceApp - Apliacion de finanzas personales",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,12 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/mapf98/pruebas-backend.git"
   },
-  "author": "Miguel Antonio Peña Fraga",
+  "author": "Miguel Antonio Peña Fraga && Alba Sofía Sánchez Silvestre",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mapf98/pruebas-backend/issues"
+    "url": "https://github.com/mapf98/balanceApp/issues"
   },
-  "homepage": "https://github.com/mapf98/pruebas-backend#readme",
+  "homepage": "https://github.com/mapf98/balanceApp#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",

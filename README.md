@@ -34,13 +34,15 @@ npm start
 
 ## Ejecutando las pruebas ⚙️
 
+#### Pruebas Unitarias 🔩
+
 _Ejecución de pruebas unitarias por definir_
 
-### Analice las pruebas end-to-end 🔩
+#### Pruebas end-to-end 🔩
 
 _Ejecución de pruebas end2end por definir_
 
-### Y las pruebas de estilo de codificación ⌨️
+#### Pruebas de estilo de codificación ⌨️
 
 _Por definir_
 
@@ -85,8 +87,9 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Reglas de markdownlint.
 * ENV para producción.
 * Agregar etiqueta de versiones a la API.
+* Agregar linter de código.
 
-### Temas de interés por investigar
+## Temas de interés por investigar
 
 * Averiguar uso de rutas dinámicas.
 * Averiguar configuración de CORS.

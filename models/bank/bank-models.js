@@ -1,19 +1,25 @@
 module.exports = {
-  getUsers: function(con, callback) {
-    con.query("SELECT * FROM PERSONA", callback);
+  getBanks: function(con, callback) {
+    con.query("SELECT * FROM BANCO", callback);
   },
-  getUserById: function(con, id, callback) {
+  getBank: function(con, id, callback) {
+    con.query("SELECT * FROM BANCO WHERE bank_id = ? ", [id], callback);
+  },
+  createBank: function(con, body, callback) {
     con.query(
-      "SELECT * FROM PERSONA AS personas WHERE ID = ? ",
-      [id],
+      "INSERT INTO BANCO (bank_name) VALUES (?);",
+      [body.bank_name],
       callback
     );
   },
-  createUser: function(con, body, callback) {
+  updateBank: function(con, id, body, callback) {
     con.query(
-      "INSERT INTO PERSONA (NOMBRE, EDAD) VALUES (?, ?);",
-      [body.nombre, body.edad],
+      "UPDATE BANCO SET bank_name = ? WHERE bank_id = ?;",
+      [body.bank_name, id],
       callback
     );
+  },
+  deleteBank: function(con, id, callback) {
+    con.query("DELETE FROM BANCO WHERE bank_id = ?;", [id], callback);
   }
 };

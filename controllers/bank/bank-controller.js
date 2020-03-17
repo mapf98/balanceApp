@@ -1,30 +1,51 @@
 const bankModels = require("../../models/bank/bank-models.js");
 
 module.exports = {
-  getUsers: function(req, res) {
-    let usuarios = [];
-    models.getUsers(req.con, function(error, results) {
+  getBanks: function(req, res) {
+    let banks = [];
+    bankModels.getBanks(req.con, function(error, results) {
       if (error) {
         res.send(error);
       } else {
-        usuarios = results;
-        res.json({ data: usuarios });
+        banks = results;
+        res.json({ data: banks });
       }
     });
   },
-  getUserById: function(req, res) {
-    models.getUserById(req.con, req.params.id, function(error, results) {
-      let usuarios = {};
+  getBank: function(req, res) {
+    bankModels.getBank(req.con, req.params.id, function(error, results) {
+      let bank = {};
       if (error) {
         res.send(error);
       } else {
-        usuario = results;
-        res.json({ data: usuario });
+        bank = results;
+        res.json({ data: bank });
       }
     });
   },
-  createUser: function(req, res) {
-    models.createUser(req.con, req.body, function(error, results) {
+  createBank: function(req, res) {
+    bankModels.createBank(req.con, req.body, function(error, results) {
+      if (error) {
+        res.send(error);
+      } else {
+        res.sendStatus("200");
+      }
+    });
+  },
+  updateBank: function(req, res) {
+    bankModels.updateBank(req.con, req.params.id, req.body, function(
+      error,
+      results
+    ) {
+      if (error) {
+        res.send(error);
+      } else {
+        res.sendStatus("200");
+      }
+    });
+  },
+  deleteBank: function(req, res) {
+    bankModels.deleteBank(req.con, req.params.id, function(error, results) {
       if (error) {
         res.send(error);
       } else {

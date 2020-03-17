@@ -89,7 +89,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Agregar etiqueta de versiones a la API.
 * Agregar linter de código.
 
-## Temas de interés por investigar
+## Temas de interés por investigar 🎓
 
 * Averiguar uso de rutas dinámicas.
 * Averiguar configuración de CORS.

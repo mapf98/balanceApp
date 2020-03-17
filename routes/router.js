@@ -1,9 +1,13 @@
 const express = require("express");
 const router = express.Router();
-//const controller = require("../controllers/controller.js");
 const bankController = require("../controllers/bank/bank-controller.js");
 
 //CRUD USUARIO
+router.get("/users", userController.getUsers);
+router.get("/users/:id", userController.getUser);
+router.post("/users/create", userController.createUser);
+router.put("/users/update/:id", userController.updateUser);
+router.delete("/users/delete/:id", userController.deleteUser);
 
 //CRUD BANCO
 router.get("/banks", bankController.getBanks);

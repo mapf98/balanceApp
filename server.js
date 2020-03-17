@@ -23,7 +23,7 @@ app.use(function(req, res, next) {
 const router = require("./routes/router.js");
 
 // routing
-app.use("/api", router);
+app.use("/balance/api/", router);
 
 if (!isProduction) {
   app.use(errorhandler());

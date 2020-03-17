@@ -4,30 +4,29 @@ API para Balance, aplicación de finanzas personales.
 
 ## Comenzando 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de análisis, desarrollo y pruebas._
+_Estas instrucciones te permitirán obtener una copia (local) del proyecto en funcionamiento para propósitos de análisis, desarrollo y pruebas:_
 
-**Nota:** si no eres colaborador, realiza un Fork del proyecto para tener una versión del repositorio actual.
+- Clona el repositorio en tu computadora.
 
-* Clona el repositorio en tu computadora.
-
-* En la raíz del proyecto ejecuta el siguiente comando:
+- En la raíz del proyecto ejecuta el siguiente comando:
 
 ```
 npm install
 ```
 
-* Luego de instalar las dependencias, ejecuta el siguiente comando para iniciar el servidor:
+- Luego de instalar las dependencias, ejecuta el siguiente comando para iniciar el servidor:
 
 ```
 npm start
 ```
+
+**Nota:** si no eres colaborador, realiza un Fork del proyecto para tener una versión del repositorio actual.
 
 ### Tópicos adicionales
 
 #### Comunes
 
 #### Avanzados
-
 
 Mira **Deployment** para conocer como desplegar el proyecto.
 
@@ -38,7 +37,6 @@ Da un ejemplo
 ```
 
 ### Instalación 🔧
-
 
 ```
 Da un ejemplo
@@ -108,4 +106,3 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 - etc.
 
 ### Mejoras por incluir 📋
-

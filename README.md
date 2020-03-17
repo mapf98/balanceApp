@@ -1,12 +1,33 @@
 # BalanceApp Backend API (v0.2.0)
 
-Proyecto de finanzas personales.
-
-### Mejoras por incluir 📋
+API para Balance, aplicación de finanzas personales.
 
 ## Comenzando 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de análisis, desarrollo y pruebas._
+
+**Nota:** si no eres colaborador, realiza un Fork del proyecto para tener una versión del repositorio actual.
+
+* Clona el repositorio en tu computadora.
+
+* En la raíz del proyecto ejecuta el siguiente comando:
+
+```
+npm install
+```
+
+* Luego de instalar las dependencias, ejecuta el siguiente comando para iniciar el servidor:
+
+```
+npm start
+```
+
+### Tópicos adicionales
+
+#### Comunes
+
+#### Avanzados
+
 
 Mira **Deployment** para conocer como desplegar el proyecto.
 
@@ -85,3 +106,6 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 - Invita una cerveza 🍺 o un café ☕ a alguien del equipo.
 - Da las gracias públicamente 🤓.
 - etc.
+
+### Mejoras por incluir 📋
+

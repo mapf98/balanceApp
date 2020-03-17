@@ -69,11 +69,6 @@ _Por definir_
 
 Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/mapf98/balanceApp/tags).
 
-## Autores ✒️
-
-+ **Miguel Antonio Peña Fraga**
-+ **Alba Sofía Sánches Silvestre**
-
 ## Mejoras por incluir 📋
 
 #### API
@@ -95,3 +90,8 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Averiguar configuración de CORS.
 * Averiguar uso de COOKIES.
 * Averiguar login con cuentas de google.
+
+## Autores ✒️
+
++ **Miguel Antonio Peña Fraga**
++ **Alba Sofía Sánches Silvestre**

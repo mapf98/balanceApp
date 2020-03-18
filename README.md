@@ -84,12 +84,18 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Agregar etiqueta de versiones a la API.
 * Agregar linter de código.
 
+#### Mejoras en BD
+
+* Validación de los atributos de las entidades.
+
 ## Temas de interés por investigar 🎓
 
 * Averiguar uso de rutas dinámicas.
 * Averiguar configuración de CORS.
 * Averiguar uso de COOKIES.
 * Averiguar login con cuentas de google.
+* Seguridad en backend.
+* Seguridad en BD.
 
 ## Autores ✒️
 

@@ -28,7 +28,7 @@ CREATE TABLE MONEDA (
 CREATE TABLE CUENTA (
 	account_id INTEGER NOT NULL AUTO_INCREMENT,
     account_type VARCHAR(3) NOT NULL,
-    account_reference VARCHAR(6) NOT NULL,
+    account_reference VARCHAR(30) NOT NULL,
     fk_user_id INTEGER NOT NULL,
     fk_bank_id INTEGER,
     fk_currency_id INTEGER NOT NULL,

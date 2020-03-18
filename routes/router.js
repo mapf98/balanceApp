@@ -4,6 +4,7 @@ const bankController = require("../controllers/bank/bank-controller.js");
 const userController = require("../controllers/user/user-controller.js");
 const currencyController = require("../controllers/currency/currency-controller.js");
 const accountController = require("../controllers/account/account-controller.js");
+const transactionController = require("../controllers/transaction/transaction-controller.js");
 
 //CRUD USUARIO
 router.get("/users", userController.getUsers);
@@ -34,5 +35,10 @@ router.put("/accounts/update/:id", accountController.updateAccount);
 router.delete("/accounts/delete/:id", accountController.deleteAccount);
 
 //CRUD TRANSACCION
+router.get("/transactions", transactionController.getTransactions);
+router.get("/transactions/:id", transactionController.getTransaction);
+router.post("/transactions/create", transactionController.createTransaction);
+router.put("/transactions/update/:id", transactionController.updateTransaction);
+router.delete("/transactions/delete/:id", transactionController.deleteTransaction);
 
 module.exports = router;

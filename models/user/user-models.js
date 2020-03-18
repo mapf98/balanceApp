@@ -7,15 +7,30 @@ module.exports = {
   },
   createUser: function(con, body, callback) {
     con.query(
-      "INSERT INTO USUARIO (first_name, last_name, email, bd_date) VALUES (?, ?, ?, ?);",
-      [body.first_name, body.last_name, body.email, body.bd_date],
+      "INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password) VALUES (?, ?, ?, ?, ?, ?);",
+      [
+        body.user_first_name,
+        body.user_last_name,
+        body.user_email,
+        body.user_alias,
+        body.user_birthdate,
+        body.user_password
+      ],
       callback
     );
   },
   updateUser: function(con, id, body, callback) {
     con.query(
-      "UPDATE USUARIO SET first_name = ?, last_name = ?, email = ?, bd_date = ? WHERE user_id = ?;",
-      [body.first_name, body.last_name, body.email, body.bd_date, id],
+      "UPDATE USUARIO SET user_first_name = ?, user_last_name = ?, user_email = ?, user_alias = ?, user_birthdate = ?, user_password = ? WHERE user_id = ?;",
+      [
+        body.user_first_name,
+        body.user_last_name,
+        body.user_email,
+        body.user_alias,
+        body.user_birthdate,
+        body.user_password,
+        id
+      ],
       callback
     );
   },

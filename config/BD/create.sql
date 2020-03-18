@@ -5,6 +5,7 @@ CREATE TABLE USUARIO (
     user_first_name VARCHAR(20) NOT NULL,
     user_last_name VARCHAR(20) NOT NULL,
     user_email VARCHAR(50) NOT NULL UNIQUE,
+    user_alias VARCHAR(50) NOT NULL UNIQUE,
     user_birthdate DATE NOT NULL,
     user_password VARCHAR(12) NOT NULL,
     PRIMARY KEY (user_id)

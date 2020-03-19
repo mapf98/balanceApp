@@ -7,26 +7,30 @@ module.exports = {
   },
   createAccount: function(con, body, callback) {
     con.query(
-      "INSERT INTO CUENTA (account_type, account_reference, fk_user_id, fk_bank_id, fk_currency_id) VALUES (?, ?, ?, ?, ?);",
+      "INSERT INTO CUENTA (account_type, account_reference, account_create_date, fk_profile_id, fk_bank_id, fk_currency_id, fk_status_id) VALUES (?, ?, ?, ?, ?, ?, ?);",
       [
         body.account_type,
         body.account_reference,
-        body.fk_user_id,
+        body.account_create_date,
+        body.fk_profile_id,
         body.fk_bank_id,
-        body.fk_currency_id
+        body.fk_currency_id,
+        body.fk_status_id
       ],
       callback
     );
   },
   updateAccount: function(con, id, body, callback) {
     con.query(
-      "UPDATE CUENTA SET account_type = ?, account_reference = ?, fk_user_id = ?, fk_bank_id = ?, fk_currency_id = ? WHERE account_id = ?;",
+      "UPDATE CUENTA SET account_type = ?, account_reference = ?, account_create_date = ?, fk_profile_id = ?, fk_bank_id = ?, fk_currency_id = ?, fk_status_id = ? WHERE account_id = ?;",
       [
         body.account_type,
         body.account_reference,
-        body.fk_user_id,
+        body.account_create_date,
+        body.fk_profile_id,
         body.fk_bank_id,
         body.fk_currency_id,
+        body.fk_status_id,
         id
       ],
       callback

@@ -1,4 +1,5 @@
 require("dotenv").config();
+const winston = require("winston")
 const express = require("express");
 const app = express();
 const port = process.env.PORT;
@@ -41,7 +42,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (!isProduction) {
-  app.use(function(err, req, res, next) {
+  app.use(function (err, req, res, next) {
     console.log(err.stack);
 
     res.status(err.status || 500);

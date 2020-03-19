@@ -2,6 +2,12 @@
 
 API para Balance, aplicación de finanzas personales.
 
+## Resumen de la API
+
+* Modelo de datos definido y codificado.
+* CRUD básico de todas las entidades en el modelo de datos.
+* Logger en consola y archivo externo.
+
 ## Pre-requisitos 📋
 
 _Estos son los pre-requisitos necesarios para ejecutar el proyecto y realizar pruebas sobre el mismo:_
@@ -75,8 +81,6 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 #### API
 
-* Incluir logger con morgan.
-* Incluir logger en file para elementos particulares.
 * Configurar error handler (para desarrollo solamente).
 * Agregar manejo de excepciones (investigar en donde es el lugar adecuado).
 * En versiones anteriores agregar el .gitignore y eliminar el node_modules junto con el .lock.
@@ -110,6 +114,10 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Investigar login con cuentas de google.
 * Investigar seguridad en backend.
 * Investigar seguridad en BD.
+
+## Sugrencias
+
+* Se puede crear un sistema rotatorio de archivos con morgan para llevar un logger diario de las peticiones realizadas a la API.
 
 ## Autores ✒️
 

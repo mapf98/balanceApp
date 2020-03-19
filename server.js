@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT;
 const compression = require("compression");
+const morgan = require('morgan');
+const chalk = require("chalk");
 const path = require("path");
 const bodyParser = require("body-parser");
 const errorhandler = require("errorhandler");
@@ -10,6 +12,7 @@ const isProduction = process.env.NODE_ENV === "production";
 const connectionBD = require("./config/dbmysql.js");
 
 app.use(compression());
+app.use(morgan(chalk.blue(':http-version | :method -> :url | :remote-addr | :response-time[digits] ms | :status')));
 app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

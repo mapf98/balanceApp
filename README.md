@@ -60,6 +60,7 @@ _Por definir_
 * Compression
 * Dotenv
 * Errorhandler
+* Morgan
 
 ## Wiki 📖
 

@@ -88,6 +88,11 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 * Validación de los atributos de las entidades.
 
+#### WIKI
+
+* Crear wiki.
+* Incluir peticiones de prueba.
+
 ## Temas de interés por investigar 🎓
 
 * Averiguar uso de rutas dinámicas.

@@ -5,6 +5,7 @@ const userController = require("../controllers/user/user-controller.js");
 const currencyController = require("../controllers/currency/currency-controller.js");
 const accountController = require("../controllers/account/account-controller.js");
 const transactionController = require("../controllers/transaction/transaction-controller.js");
+const statusController = require("../controllers/estatus/estatus-controller.js");
 
 //CRUD USUARIO
 router.get("/users", userController.getUsers);
@@ -40,5 +41,12 @@ router.get("/transactions/:id", transactionController.getTransaction);
 router.post("/transactions/create", transactionController.createTransaction);
 router.put("/transactions/update/:id", transactionController.updateTransaction);
 router.delete("/transactions/delete/:id", transactionController.deleteTransaction);
+
+//CRUD ESTATUS
+router.get("/statuses", statusController.getStatuses);
+router.get("/statuses/:id", statusController.getStatus);
+router.post("/statuses/create", statusController.createStatus);
+router.put("/statuses/update/:id", statusController.updateStatus);
+router.delete("/statuses/delete/:id", statusController.deleteStatus);
 
 module.exports = router;

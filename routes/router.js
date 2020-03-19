@@ -10,6 +10,7 @@ const currencyHistoryController = require("../controllers/currency_history/curre
 const feedbackController = require("../controllers/feedback/feedback-controller.js");
 const placeController = require("../controllers/place/place-controller.js");
 const profileController = require("../controllers/profile/profile-controller.js");
+const categoryController = require("../controllers/category/category-controller.js");
 
 //CRUD USUARIO
 router.get("/users", userController.getUsers);
@@ -80,5 +81,12 @@ router.get("/profiles/:id", profileController.getProfile);
 router.post("/profiles/create", profileController.createProfile);
 router.put("/profiles/update/:id", profileController.updateProfile);
 router.delete("/profiles/delete/:id", profileController.deleteProfile);
+
+//CRUD CATEGORY
+router.get("/categories", categoryController.getCategories);
+router.get("/categories/:id", categoryController.getCategory);
+router.post("/categories/create", categoryController.createCategory);
+router.put("/categories/update/:id", categoryController.updateCategory);
+router.delete("/categories/delete/:id", categoryController.deleteCategory);
 
 module.exports = router;

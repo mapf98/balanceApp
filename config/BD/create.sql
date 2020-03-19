@@ -27,7 +27,6 @@ CREATE TABLE MONEDA (
 	PRIMARY KEY (currency_id)
 );
 
-/*AGREGAR EN BACKEND*/
 CREATE TABLE HISTORIAL_MONEDA (
 	currency_history_id INTEGER NOT NULL AUTO_INCREMENT,
     currency_history_amount_one_dollar_equivalent DOUBLE NOT NULL,

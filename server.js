@@ -2,9 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = process.env.PORT;
-var compression = require('compression');
+var compression = require("compression");
 var path = require("path");
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 var errorhandler = require("errorhandler");
 var isProduction = process.env.NODE_ENV === "production";
 const connectionBD = require("./config/dbmysql.js");
@@ -31,7 +31,7 @@ if (!isProduction) {
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  var err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
@@ -46,10 +46,12 @@ if (!isProduction) {
 
     res.status(err.status || 500);
 
-    res.json({'errors': {
-      message: err.message,
-      error: err
-    }});
+    res.json({
+      errors: {
+        message: err.message,
+        error: err
+      }
+    });
   });
 }
 
@@ -57,10 +59,14 @@ if (!isProduction) {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.json({'errors': {
-    message: err.message,
-    error: {}
-  }});
+  res.json({
+    errors: {
+      message: err.message,
+      error: {}
+    }
+  });
 });
 
-app.listen(port, () => console.log(`Servicio activo - (Puerto para peticiones: ${port})`));
+app.listen(port, () =>
+  console.log(`Servicio activo - (Puerto para peticiones: ${port})`)
+);

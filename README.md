@@ -73,8 +73,8 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 #### API
 
-* Incluir logger con winston.
-* Incluir logger en file y BD para elementos particulares.
+* Incluir logger con morgan.
+* Incluir logger en file para elementos particulares.
 * Configurar error handler (para desarrollo solamente).
 * Agregar manejo de excepciones (investigar en donde es el lugar adecuado).
 * En versiones anteriores agregar el .gitignore y eliminar el node_modules junto con el .lock.

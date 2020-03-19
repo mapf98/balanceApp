@@ -9,6 +9,7 @@ const statusController = require("../controllers/estatus/estatus-controller.js")
 const currencyHistoryController = require("../controllers/currency_history/currency-history-controller.js");
 const feedbackController = require("../controllers/feedback/feedback-controller.js");
 const placeController = require("../controllers/place/place-controller.js");
+const profileController = require("../controllers/profile/profile-controller.js");
 
 //CRUD USUARIO
 router.get("/users", userController.getUsers);
@@ -72,5 +73,12 @@ router.get("/places/:id", placeController.getPlace);
 router.post("/places/create", placeController.createPlace);
 router.put("/places/update/:id", placeController.updatePlace);
 router.delete("/places/delete/:id", placeController.deletePlace);
+
+//CRUD PROFILE
+router.get("/profiles", profileController.getProfiles);
+router.get("/profiles/:id", profileController.getProfile);
+router.post("/profiles/create", profileController.createProfile);
+router.put("/profiles/update/:id", profileController.updateProfile);
+router.delete("/profiles/delete/:id", profileController.deleteProfile);
 
 module.exports = router;

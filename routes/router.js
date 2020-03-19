@@ -8,6 +8,7 @@ const transactionController = require("../controllers/transaction/transaction-co
 const statusController = require("../controllers/estatus/estatus-controller.js");
 const currencyHistoryController = require("../controllers/currency_history/currency-history-controller.js");
 const feedbackController = require("../controllers/feedback/feedback-controller.js");
+const placeController = require("../controllers/place/place-controller.js");
 
 //CRUD USUARIO
 router.get("/users", userController.getUsers);
@@ -64,5 +65,12 @@ router.get("/feedbacks/:id", feedbackController.getFeedback);
 router.post("/feedbacks/create", feedbackController.createFeedback);
 router.put("/feedbacks/update/:id", feedbackController.updateFeedback);
 router.delete("/feedbacks/delete/:id", feedbackController.deleteFeedback);
+
+//CRUD LUGAR
+router.get("/places", placeController.getPlaces);
+router.get("/places/:id", placeController.getPlace);
+router.post("/places/create", placeController.createPlace);
+router.put("/places/update/:id", placeController.updatePlace);
+router.delete("/places/delete/:id", placeController.deletePlace);
 
 module.exports = router;

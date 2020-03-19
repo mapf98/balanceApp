@@ -7,7 +7,7 @@ module.exports = {
   },
   createFeedback: function(con, body, callback) {
     con.query(
-      "INSERT INTO FEEDBACK (feedback_description, feedback_rate, feedback_date, fk_user_id) VALUES ( ?, ?, ?, ?);",
+      "INSERT INTO FEEDBACK (feedback_description, feedback_rate, feedback_date, fk_user_id) VALUES (?, ?, ?, ?);",
       [body.feedback_description, body.feedback_rate, body.feedback_date, body.fk_user_id],
       callback
     );

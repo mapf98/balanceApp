@@ -1,13 +1,12 @@
 require("dotenv").config();
-const winston = require("winston")
 const express = require("express");
 const app = express();
 const port = process.env.PORT;
-var compression = require("compression");
-var path = require("path");
-var bodyParser = require("body-parser");
-var errorhandler = require("errorhandler");
-var isProduction = process.env.NODE_ENV === "production";
+const compression = require("compression");
+const path = require("path");
+const bodyParser = require("body-parser");
+const errorhandler = require("errorhandler");
+const isProduction = process.env.NODE_ENV === "production";
 const connectionBD = require("./config/dbmysql.js");
 
 app.use(compression());

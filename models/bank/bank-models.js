@@ -7,15 +7,15 @@ module.exports = {
   },
   createBank: function(con, body, callback) {
     con.query(
-      "INSERT INTO BANCO (bank_name) VALUES (?);",
-      [body.bank_name],
+      "INSERT INTO BANCO (bank_name, fk_place_id) VALUES (?, ?);",
+      [body.bank_name, body.fk_place_id],
       callback
     );
   },
   updateBank: function(con, id, body, callback) {
     con.query(
-      "UPDATE BANCO SET bank_name = ? WHERE bank_id = ?;",
-      [body.bank_name, id],
+      "UPDATE BANCO SET bank_name = ?, fk_place_id = ? WHERE bank_id = ?;",
+      [body.bank_name, body.fk_place_id, id],
       callback
     );
   },

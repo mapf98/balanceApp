@@ -115,7 +115,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Investigar seguridad en backend.
 * Investigar seguridad en BD.
 
-## Sugrencias
+## Sugerencias 🚀
 
 * Se puede crear un sistema rotatorio de archivos con morgan para llevar un logger diario de las peticiones realizadas a la API.
 

@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.PORT;
 const compression = require("compression");
 const morgan = require('morgan');
+var fs = require("fs");
 const chalk = require("chalk");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -12,7 +13,28 @@ const isProduction = process.env.NODE_ENV === "production";
 const connectionBD = require("./config/dbmysql.js");
 
 app.use(compression());
-app.use(morgan(chalk.blue(':http-version | :method -> :url | :remote-addr | :response-time[digits] ms | :status')));
+app.use(
+  morgan(
+    chalk.cyan("[:date[web]] --> ") +
+    chalk.blue("HTTP (v:http-version)") +
+    " | " +
+    chalk.yellow(":method -> :url") +
+    " | " +
+    chalk.green(":status") +
+    " | " +
+    chalk.blue("Time: :response-time[digits] ms")
+  )
+);
+app.use(
+  morgan(
+    "[:date[web]] --> HTTP (v:http-version) | :method -> :url | :status | Time: :response-time[digits] ms",
+    {
+      stream: fs.createWriteStream(path.join("./logs", "access.log"), {
+        flags: "a"
+      })
+    }
+  )
+);
 app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

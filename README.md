@@ -79,6 +79,8 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Configurar error handler (para desarrollo solamente).
 * Agregar manejo de excepciones (investigar en donde es el lugar adecuado).
 * En versiones anteriores agregar el .gitignore y eliminar el node_modules junto con el .lock.
+* Agregar excepcionfilter o similar.
+* Agregar logger en archivo para errores.
 
 #### Configuraciones de proyecto
 

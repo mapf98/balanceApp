@@ -1,4 +1,4 @@
-# BalanceApp API (v1.0.0)
+# BalanceApp API (v1.1.0)
 
 API para Balance, aplicación de finanzas personales.
 
@@ -61,6 +61,7 @@ _Por definir_
 * Dotenv
 * Errorhandler
 * Morgan
+* Chalk
 
 ## Wiki 📖
 

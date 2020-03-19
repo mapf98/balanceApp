@@ -6,6 +6,7 @@ const currencyController = require("../controllers/currency/currency-controller.
 const accountController = require("../controllers/account/account-controller.js");
 const transactionController = require("../controllers/transaction/transaction-controller.js");
 const statusController = require("../controllers/estatus/estatus-controller.js");
+const currencyHistoryController = require("../controllers/currency_history/currency-history-controller.js");
 
 //CRUD USUARIO
 router.get("/users", userController.getUsers);
@@ -48,5 +49,12 @@ router.get("/statuses/:id", statusController.getStatus);
 router.post("/statuses/create", statusController.createStatus);
 router.put("/statuses/update/:id", statusController.updateStatus);
 router.delete("/statuses/delete/:id", statusController.deleteStatus);
+
+//CRUD HISTORIAL_MONEDA
+router.get("/currencies-history", currencyHistoryController.getCurrenciesHistory);
+router.get("/currencies-history/:id", currencyHistoryController.getCurrencyHistory);
+router.post("/currencies-history/create", currencyHistoryController.createCurrencyHistory);
+router.put("/currencies-history/update/:id", currencyHistoryController.updateCurrencyHistory);
+router.delete("/currencies-history/delete/:id", currencyHistoryController.deleteCurrencyHistory);
 
 module.exports = router;

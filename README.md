@@ -74,6 +74,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 #### API
 
 * Incluir logger de peticiones al servicio (morgan).
+* Incluir logger externo con winston.
 * Configurar error handler.
 
 #### Configuraciones de proyecto
@@ -95,14 +96,14 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 ## Temas de interés por investigar 🎓
 
-* Averiguar uso de rutas dinámicas.
+* Investigar uso de rutas dinámicas.
 * Investigar cookieparser.
 * Investigar http-errors.
-* Averiguar configuración de CORS.
-* Averiguar uso de COOKIES.
-* Averiguar login con cuentas de google.
-* Seguridad en backend.
-* Seguridad en BD.
+* Investigar configuración de CORS.
+* Investigar uso de COOKIES.
+* Investigar login con cuentas de google.
+* Investigar seguridad en backend.
+* Investigar seguridad en BD.
 
 ## Autores ✒️
 

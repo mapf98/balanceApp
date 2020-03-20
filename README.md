@@ -110,7 +110,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 ## Temas de interés por investigar 🎓
 
 * Investigar uso de rutas dinámicas.
-* Investigar cookieparser.
+* Investigar cookie-session y session stores.
 * Investigar http-errors.
 * Investigar configuración de CORS.
 * Investigar uso de COOKIES.
@@ -120,6 +120,8 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Token de ingreso.
 * Manejo de excepciones (investigar en donde es el lugar adecuado).
 * Investigar sobre Process Manager para Express (para producción).
+* Revisar temas de seguridad en [Express](https://expressjs.com/en/advanced/best-practice-security.html)
+* Revisar temas de optimización en [Express](https://expressjs.com/en/advanced/best-practice-performance.html)
 
 ## Sugerencias 🚀
 

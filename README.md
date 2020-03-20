@@ -1,4 +1,4 @@
-# BalanceApp API (v1.1.0)
+# BalanceApp API (v1.2.0)
 
 API para Balance, aplicación de finanzas personales.
 
@@ -7,6 +7,7 @@ API para Balance, aplicación de finanzas personales.
 * Modelo de datos definido y codificado.
 * CRUD básico de todas las entidades en el modelo de datos.
 * Logger en consola y archivo externo.
+* Error Handler de express integrado.
 
 ## Pre-requisitos 📋
 
@@ -81,12 +82,11 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 #### API
 
-* Configurar error handler (para desarrollo solamente).
-* Agregar manejo de excepciones (investigar en donde es el lugar adecuado).
 * En versiones anteriores agregar el .gitignore y eliminar el node_modules junto con el .lock.
-* Agregar excepcionfilter o similar.
-* Agregar logger en archivo para errores.
-* Agregar sistema de información monetaria en tiempo real.
+
+## Sistemas por desarrollar
+
+* Sistema de información monetaria en tiempo real.
 
 #### Configuraciones de proyecto
 
@@ -117,10 +117,12 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Investigar seguridad en BD.
 * Envio de correos electrónicos.
 * Token de ingreso.
+* Manejo de excepciones (investigar en donde es el lugar adecuado).
 
 ## Sugerencias 🚀
 
 * Se puede crear un sistema rotatorio de archivos con morgan para llevar un logger diario de las peticiones realizadas a la API.
+* Agregar logger en archivo para errores.
 
 ## Autores ✒️
 

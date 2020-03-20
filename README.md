@@ -1,6 +1,6 @@
 # BalanceApp API (v1.1.0)
 
-API para Balance, aplicación de finanzas personales 📊
+API para Balance, aplicación de finanzas personales.
 
 ## Resumen de la API ✔
 
@@ -86,6 +86,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * En versiones anteriores agregar el .gitignore y eliminar el node_modules junto con el .lock.
 * Agregar excepcionfilter o similar.
 * Agregar logger en archivo para errores.
+* Agregar sistema de información monetaria en tiempo real.
 
 #### Configuraciones de proyecto
 
@@ -114,6 +115,8 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Investigar login con cuentas de google.
 * Investigar seguridad en backend.
 * Investigar seguridad en BD.
+* Envio de correos electrónicos.
+* Token de ingreso.
 
 ## Sugerencias 🚀
 

@@ -46,10 +46,6 @@ npm start
 
 _Ejecución de pruebas unitarias por definir_
 
-#### Pruebas end-to-end 🔩
-
-_Ejecución de pruebas end2end por definir_
-
 #### Pruebas de estilo de codificación ⌨️
 
 _Por definir_
@@ -85,10 +81,14 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 #### API
 
 * En versiones anteriores agregar el .gitignore y eliminar el node_modules junto con el .lock.
+* Agregar pruebas unitarias.
+* Agregar linter.
 
 ## Sistemas por desarrollar
 
 * Sistema de información monetaria en tiempo real.
+* Sistema de autorización mediante Token.
+* Sistema de cookies y sesión.
 
 #### Configuraciones de proyecto
 

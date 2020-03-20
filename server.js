@@ -4,7 +4,8 @@ const app = express();
 const port = process.env.PORT;
 const compression = require("compression");
 const morgan = require('morgan');
-var fs = require("fs");
+const fs = require("fs");
+const helmet = require("helmet");
 const chalk = require("chalk");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -13,6 +14,7 @@ const isProduction = process.env.NODE_ENV === "production";
 const connectionBD = require("./config/dbmysql.js");
 
 app.use(compression());
+app.use(helmet());
 app.use(
   morgan(
     chalk.cyan("[:date[web]] --> ") +

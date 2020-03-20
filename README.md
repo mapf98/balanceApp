@@ -8,6 +8,7 @@ API para Balance, aplicación de finanzas personales.
 * CRUD básico de todas las entidades en el modelo de datos.
 * Logger en consola y archivo externo.
 * Error Handler de express integrado.
+* Se integró el módulo Helmet para seguridad y evitar ataques en las peticiones.
 
 ## Pre-requisitos 📋
 
@@ -69,6 +70,7 @@ _Por definir_
 * Errorhandler
 * Morgan
 * Chalk
+* Helmet
 
 ## Wiki 📖
 
@@ -113,11 +115,11 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Investigar configuración de CORS.
 * Investigar uso de COOKIES.
 * Investigar login con cuentas de google.
-* Investigar seguridad en backend.
 * Investigar seguridad en BD.
 * Envio de correos electrónicos.
 * Token de ingreso.
 * Manejo de excepciones (investigar en donde es el lugar adecuado).
+* Investigar sobre Process Manager para Express (para producción).
 
 ## Sugerencias 🚀
 

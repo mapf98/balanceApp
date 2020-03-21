@@ -65,6 +65,14 @@ npx eslint --fix <ubicación del archivo/nombre del archivo.js>
 
 #### Pruebas de estilo de codificación ⌨️
 
+_Estas instrucciones te permitirán ejecutar las pruebas necesarias para determinar si el código escrito cumple con las normas de estilo establecidas._
+
+* Ejecuta el siguiente código para evaluar un archivo específico:
+```
+npx prettier --check "<ubicación del archivo/nombre del archivo.js>"
+```
+**Nota:** para otros comando en consola puedes visitar [Usage - Prettier](https://prettier.io/docs/en/cli.html)
+
 ## Despliegue 📦
 
 _Por definir_
@@ -82,6 +90,8 @@ _Por definir_
 * Morgan
 * Chalk
 * Helmet
+* ESLint
+* Prettier
 
 ## Wiki 📖
 

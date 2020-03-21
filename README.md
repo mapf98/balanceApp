@@ -51,12 +51,12 @@ _Ejecución de pruebas unitarias por definir_
 
 _Estas instrucciones te permitirán ejecutar las pruebas necesarias para determinar errores en la lógica del proyecto, es decir, loops infinitos, variables no utilizadas, condicionales duplicados, etc._
 
+* Ejecuta el siguiente código para evaluar un archivo específico:
 ```
 npx eslint <ubicación del archivo/nombre del archivo.js>
 ```
 
-_Para arreglar los errores en el archivo puedes hacerlo de dos formas: con tu editor de código o con la línea de comandos_
-
+* Para arreglar los errores en el archivo puedes hacerlo de dos formas: con tu editor de código o con la línea de comandos:
 ```
 npx eslint --fix <ubicación del archivo/nombre del archivo.js>
 ```

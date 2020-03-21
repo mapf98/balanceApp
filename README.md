@@ -116,7 +116,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Investigar http-errors.
 * Investigar configuración de CORS.
 * Investigar uso de COOKIES.
-* Investigar login con cuentas de google.
+* Investigar login con cuentas de google o externos.
 * Investigar seguridad en BD.
 * Envio de correos electrónicos.
 * Token de ingreso.

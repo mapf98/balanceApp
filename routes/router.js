@@ -45,7 +45,10 @@ router.get("/transactions", transactionController.getTransactions);
 router.get("/transactions/:id", transactionController.getTransaction);
 router.post("/transactions/create", transactionController.createTransaction);
 router.put("/transactions/update/:id", transactionController.updateTransaction);
-router.delete("/transactions/delete/:id", transactionController.deleteTransaction);
+router.delete(
+  "/transactions/delete/:id",
+  transactionController.deleteTransaction
+);
 
 //CRUD ESTATUS
 router.get("/statuses", statusController.getStatuses);
@@ -55,11 +58,26 @@ router.put("/statuses/update/:id", statusController.updateStatus);
 router.delete("/statuses/delete/:id", statusController.deleteStatus);
 
 //CRUD HISTORIAL_MONEDA
-router.get("/currencies-history", currencyHistoryController.getCurrenciesHistory);
-router.get("/currencies-history/:id", currencyHistoryController.getCurrencyHistory);
-router.post("/currencies-history/create", currencyHistoryController.createCurrencyHistory);
-router.put("/currencies-history/update/:id", currencyHistoryController.updateCurrencyHistory);
-router.delete("/currencies-history/delete/:id", currencyHistoryController.deleteCurrencyHistory);
+router.get(
+  "/currencies-history",
+  currencyHistoryController.getCurrenciesHistory
+);
+router.get(
+  "/currencies-history/:id",
+  currencyHistoryController.getCurrencyHistory
+);
+router.post(
+  "/currencies-history/create",
+  currencyHistoryController.createCurrencyHistory
+);
+router.put(
+  "/currencies-history/update/:id",
+  currencyHistoryController.updateCurrencyHistory
+);
+router.delete(
+  "/currencies-history/delete/:id",
+  currencyHistoryController.deleteCurrencyHistory
+);
 
 //CRUD FEEDBACK
 router.get("/feedbacks", feedbackController.getFeedbacks);

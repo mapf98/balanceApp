@@ -61,7 +61,7 @@ npx eslint <ubicación del archivo/nombre del archivo.js>
 npx eslint --fix <ubicación del archivo/nombre del archivo.js>
 ```
 
-**Nota:** para otros comando en consola puedes visitar [Command Line Interface - ESLint](https://eslint.org/docs/user-guide/command-line-interface)
+**Nota:** para otros comando en consola puedes visitar [Command Line Interface - ESLint](https://eslint.org/docs/user-guide/command-line-interface){:target="_blank"}
 
 #### Pruebas de estilo de codificación ⌨️
 
@@ -89,7 +89,7 @@ _Por definir_
 
 ## Versionado 📌
 
-Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/mapf98/balanceApp/tags).
+Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/mapf98/balanceApp/tags){:target="_blank"}.
 
 ## Mejoras por incluir 📋
 
@@ -137,8 +137,8 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Token de ingreso.
 * Manejo de excepciones (investigar en donde es el lugar adecuado).
 * Investigar sobre Process Manager para Express (para producción).
-* Revisar temas de seguridad en [Express](https://expressjs.com/en/advanced/best-practice-security.html)
-* Revisar temas de optimización en [Express](https://expressjs.com/en/advanced/best-practice-performance.html)
+* Revisar temas de seguridad en [Express](https://expressjs.com/en/advanced/best-practice-security.html){:target="_blank"}
+* Revisar temas de optimización en [Express](https://expressjs.com/en/advanced/best-practice-performance.html){:target="_blank"}
 
 ## Sugerencias 🚀
 

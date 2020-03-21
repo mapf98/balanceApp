@@ -47,9 +47,23 @@ npm start
 
 _Ejecución de pruebas unitarias por definir_
 
-#### Pruebas de estilo de codificación ⌨️
+#### Pruebas de lógica de aplicación ⌨️
 
-_Por definir_
+_Estas instrucciones te permitirán ejecutar las pruebas necesarias para determinar errores en la lógica del proyecto, es decir, loops infinitos, variables no utilizadas, condicionales duplicados, etc._
+
+```
+npx eslint <ubicación del archivo/nombre del archivo.js>
+```
+
+_Para arreglar los errores en el archivo puedes hacerlo de dos formas: con tu editor de código o con la línea de comandos_
+
+```
+npx eslint --fix <ubicación del archivo/nombre del archivo.js>
+```
+
+**Nota:** para otros comando en consola puedes visitar [Command Line Interface - ESLint](https://eslint.org/docs/user-guide/command-line-interface)
+
+#### Pruebas de estilo de codificación ⌨️
 
 ## Despliegue 📦
 

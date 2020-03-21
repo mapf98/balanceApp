@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT;
 const compression = require("compression");
-const morgan = require('morgan');
+const morgan = require("morgan");
 const fs = require("fs");
 const helmet = require("helmet");
 const chalk = require("chalk");
@@ -18,13 +18,13 @@ app.use(helmet());
 app.use(
   morgan(
     chalk.cyan("[:date[web]] --> ") +
-    chalk.blue("HTTP (v:http-version)") +
-    " | " +
-    chalk.yellow(":method -> :url") +
-    " | " +
-    chalk.green(":status") +
-    " | " +
-    chalk.blue("Time: :response-time[digits] ms")
+      chalk.blue("HTTP (v:http-version)") +
+      " | " +
+      chalk.yellow(":method -> :url") +
+      " | " +
+      chalk.green(":status") +
+      " | " +
+      chalk.blue("Time: :response-time[digits] ms")
   )
 );
 app.use(
@@ -68,7 +68,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (!isProduction) {
-  app.use(function (err, req, res, next) {
+  app.use(function(err, req, res) {
     console.log(err.stack);
 
     res.status(err.status || 500);
@@ -84,7 +84,7 @@ if (!isProduction) {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   res.status(err.status || 500);
   res.json({
     errors: {

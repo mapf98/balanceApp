@@ -9,6 +9,7 @@ API para Balance, aplicación de finanzas personales.
 * Logger en consola y archivo externo.
 * Error Handler de express integrado.
 * Se integró el módulo Helmet para seguridad y evitar ataques en las peticiones.
+* Se integró ESLint como linter de código.
 
 ## Pre-requisitos 📋
 
@@ -84,7 +85,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * En versiones anteriores agregar eliminar el .gitignore y eliminar el node_modules junto con el .lock.
 * Eliminar el .env por seguridad.
 * Agregar pruebas unitarias.
-* Agregar linter.
+* Agregar formateador de código.
 
 ## Sistemas por desarrollar
 

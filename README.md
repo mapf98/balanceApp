@@ -10,6 +10,7 @@ API para Balance, aplicación de finanzas personales.
 * Error Handler de express integrado.
 * Se integró el módulo Helmet para seguridad y evitar ataques en las peticiones.
 * Se integró ESLint como linter de código.
+* Se integró Prettier como formateador de código.
 
 ## Pre-requisitos 📋
 

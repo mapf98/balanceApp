@@ -3,17 +3,25 @@
 /*CATEGORIA*/
 INSERT INTO CATEGORIA (category_name) VALUES ('Alimentos');
 INSERT INTO CATEGORIA (category_name) VALUES ('Estudios');
-INSERT INTO CATEGORIA (category_name) VALUES ('Vestimenta');
+INSERT INTO CATEGORIA (category_name) VALUES ('Vestimenta'); 
 INSERT INTO CATEGORIA (category_name) VALUES ('Hogar');
 INSERT INTO CATEGORIA (category_name) VALUES ('Vehículos');
 SELECT * FROM CATEGORIA;
 
+/*ESTATUS*/
+INSERT INTO ESTATUS (status_name) VALUES ('OPEN');
+INSERT INTO ESTATUS (status_name) VALUES ('CLOSE');
+INSERT INTO ESTATUS (status_name) VALUES ('DISCONTINUED');
+INSERT INTO ESTATUS (status_name) VALUES ('REMOVE');
+INSERT INTO ESTATUS (status_name) VALUES ('ON HOLD');
+SELECT * FROM ESTATUS;
+
 /*USUARIO*/
-INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password, user_create_date) VALUES ('Miguel' , 'Fraga', 'mpfraga98@gmail.com', 'mpfraga98', '1998-04-03', 'admin1', '2020-04-03');
-INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password, user_create_date) VALUES ('Alba', 'Silvestre', 'alba.sofia.n.n@gmail.com', 'albasofia', '1999-01-31', 'admin2', '2020-04-12');
-INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password, user_create_date) VALUES ('Josefa', 'Fraga', 'jfraga2023@gmail.com', 'jfraga2023', '1963-12-20', 'admin3', '2020-04-13');
-INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password, user_create_date) VALUES ('Jesús', 'Chang', 'zchangvx@hotmail.com', 'zchang', '1997-10-25', 'admin4', '2020-04-30');
-INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password, user_create_date) VALUES ('Diego', 'Di Salvatore', 'disalvatorediego@gmail.com', 'disalvatore', '1998-06-02', 'admin5', '2020-04-02');
+INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password, user_create_date, fk_status_id) VALUES ('Miguel' , 'Fraga', 'mpfraga98@gmail.com', 'mpfraga98', '1998-04-03', 'admin1', '2020-04-03', 1);
+INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password, user_create_date, fk_status_id) VALUES ('Alba', 'Silvestre', 'alba.sofia.n.n@gmail.com', 'albasofia', '1999-01-31', 'admin2', '2020-04-12', 1);
+INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password, user_create_date, fk_status_id) VALUES ('Josefa', 'Fraga', 'jfraga2023@gmail.com', 'jfraga2023', '1963-12-20', 'admin3', '2020-04-13', 1);
+INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password, user_create_date, fk_status_id) VALUES ('Jesús', 'Chang', 'zchangvx@hotmail.com', 'zchang', '1997-10-25', 'admin4', '2020-04-30', 1);
+INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password, user_create_date, fk_status_id) VALUES ('Diego', 'Di Salvatore', 'disalvatorediego@gmail.com', 'disalvatore', '1998-06-02', 'admin5', '2020-04-02', 1);
 SELECT * FROM USUARIO;
 
 /*FEEDBACK*/
@@ -39,14 +47,6 @@ INSERT INTO BANCO (bank_name, fk_place_id) VALUES ('Mercantil', 1);
 INSERT INTO BANCO (bank_name, fk_place_id) VALUES ('Banesco', 1);
 INSERT INTO BANCO (bank_name, fk_place_id) VALUES ('BFC', 5);
 SELECT * FROM BANCO;
-
-/*ESTATUS*/
-INSERT INTO ESTATUS (status_name) VALUES ('OPEN');
-INSERT INTO ESTATUS (status_name) VALUES ('CLOSE');
-INSERT INTO ESTATUS (status_name) VALUES ('DISCONTINUED');
-INSERT INTO ESTATUS (status_name) VALUES ('REMOVE');
-INSERT INTO ESTATUS (status_name) VALUES ('ON HOLD');
-SELECT * FROM ESTATUS;
 
 /*MONEDA*/
 INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Bolivares', 'Bs', 'VES', 73000);

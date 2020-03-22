@@ -39,7 +39,7 @@ describe("Users Test", () => {
       user_alias: 333,
       user_birthdate: "1998-04-100",
       user_password: 2222,
-      user_create_date: "2020-12-99"
+      fk_status_id: 1
     };
     request(app)
       .post("/balance/api/users/create")
@@ -58,7 +58,7 @@ describe("Users Test", () => {
       user_alias: "t98",
       user_birthdate: "1998-04-03",
       user_password: "admin1",
-      user_create_date: "2020-04-03"
+      fk_status_id: 1
     };
     request(app)
       .post("/balance/api/users/create")
@@ -77,7 +77,8 @@ describe("Users Test", () => {
       user_email: "test@gmail.com",
       user_alias: "t98",
       user_birthdate: "1998-04-03",
-      user_password: "admin1"
+      user_password: "admin1",
+      fk_status_id: 1
     };
     request(app)
       .put(`/balance/api/users/update/${insert_id}`)
@@ -95,7 +96,8 @@ describe("Users Test", () => {
       user_email: "test@gmail.com",
       user_alias: 1212,
       user_birthdate: "1998-04-43",
-      user_password: "admin1"
+      user_password: "admin1",
+      fk_status_id: 1
     };
     request(app)
       .put(`/balance/api/users/update/${insert_id}`)

@@ -15,7 +15,9 @@ CREATE TABLE USUARIO (
     user_birthdate DATE NOT NULL,
     user_password VARCHAR(12) NOT NULL,
     user_create_date DATE NOT NULL,
-    PRIMARY KEY (user_id)
+    fk_status_id INTEGER NOT NULL,
+    PRIMARY KEY (user_id),
+    FOREIGN KEY FK_STATUS_USER_ID (fk_status_id) REFERENCES ESTATUS (status_id)
 );
 
 CREATE TABLE MONEDA (
@@ -98,7 +100,6 @@ CREATE TABLE CUENTA (
     CONSTRAINT CHECK_ACCOUNT_TYPE CHECK (account_type in ('DIG','EFE','CRY'))
 );
 
-/*ARREGLAR EN BACKEND*/
 CREATE TABLE TRANSACCION (
 	transaction_id INTEGER NOT NULL AUTO_INCREMENT,
     transaction_account_total DOUBLE NOT NULL,

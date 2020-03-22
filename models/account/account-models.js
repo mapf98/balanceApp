@@ -22,11 +22,10 @@ module.exports = {
   },
   updateAccount: function(con, id, body, callback) {
     con.query(
-      "UPDATE CUENTA SET account_type = ?, account_reference = ?, account_create_date = ?, fk_profile_id = ?, fk_bank_id = ?, fk_currency_id = ?, fk_status_id = ? WHERE account_id = ?;",
+      "UPDATE CUENTA SET account_type = ?, account_reference = ?, fk_profile_id = ?, fk_bank_id = ?, fk_currency_id = ?, fk_status_id = ? WHERE account_id = ?;",
       [
         body.account_type,
         body.account_reference,
-        body.account_create_date,
         body.fk_profile_id,
         body.fk_bank_id,
         body.fk_currency_id,
@@ -37,6 +36,10 @@ module.exports = {
     );
   },
   deleteAccount: function(con, id, callback) {
-    con.query("DELETE FROM CUENTA WHERE account_id = ?;", [id], callback);
+    con.query(
+      "UPDATE CUENTA SET fk_status_id = (SELECT status_id FROM ESTATUS WHERE status_name = ?) WHERE account_id = ?;",
+      ["REMOVE", id],
+      callback
+    );
   }
 };

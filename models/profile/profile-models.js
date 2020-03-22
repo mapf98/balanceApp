@@ -19,14 +19,8 @@ module.exports = {
   },
   updateProfile: function(con, id, body, callback) {
     con.query(
-      "UPDATE PERFIL SET profile_name = ?, profile_type = ?, profile_create_date = ?, fk_user_id = ? WHERE profile_id = ?;",
-      [
-        body.profile_name,
-        body.profile_type,
-        body.profile_create_date,
-        body.fk_user_id,
-        id
-      ],
+      "UPDATE PERFIL SET profile_name = ?, profile_type = ?, fk_user_id = ? WHERE profile_id = ?;",
+      [body.profile_name, body.profile_type, body.fk_user_id, id],
       callback
     );
   },

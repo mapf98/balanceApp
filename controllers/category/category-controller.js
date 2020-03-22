@@ -4,12 +4,8 @@ module.exports = {
   getCategories: function(req, res, next) {
     let categories = [];
     categoryModels.getCategories(req.con, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        categories = results;
-        res.json({ data: categories });
-      }
+      categories = results;
+      res.json({ data: categories });
     });
   },
   getCategory: function(req, res, next) {
@@ -18,7 +14,7 @@ module.exports = {
       results
     ) {
       let category = {};
-      if (error) {
+      if (error || results.length == 0) {
         next(error);
       } else {
         category = results;
@@ -27,11 +23,11 @@ module.exports = {
     });
   },
   createCategory: function(req, res, next) {
-    categoryModels.createCategory(req.con, req.body, function(error) {
+    categoryModels.createCategory(req.con, req.body, function(error, results) {
       if (error) {
         next(error);
       } else {
-        res.sendStatus("200");
+        res.json({ status: "200", returning_id: results.insertId });
       }
     });
   },

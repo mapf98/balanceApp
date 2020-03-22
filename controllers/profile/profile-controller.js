@@ -4,18 +4,14 @@ module.exports = {
   getProfiles: function(req, res, next) {
     let profiles = [];
     profileModels.getProfiles(req.con, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        profiles = results;
-        res.json({ data: profiles });
-      }
+      profiles = results;
+      res.json({ data: profiles });
     });
   },
   getProfile: function(req, res, next) {
     profileModels.getProfile(req.con, req.params.id, function(error, results) {
       let profile = {};
-      if (error) {
+      if (error || results.length == 0) {
         next(error);
       } else {
         profile = results;
@@ -24,11 +20,11 @@ module.exports = {
     });
   },
   createProfile: function(req, res, next) {
-    profileModels.createProfile(req.con, req.body, function(error) {
+    profileModels.createProfile(req.con, req.body, function(error, results) {
       if (error) {
         next(error);
       } else {
-        res.sendStatus("200");
+        res.json({ status: "200", returning_id: results.insertId });
       }
     });
   },
@@ -44,9 +40,7 @@ module.exports = {
     });
   },
   deleteProfile: function(req, res, next) {
-    profileModels.deleteProfile(req.con, req.params.id, function(
-      error
-    ) {
+    profileModels.deleteProfile(req.con, req.params.id, function(error) {
       if (error) {
         next(error);
       } else {

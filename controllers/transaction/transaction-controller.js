@@ -4,12 +4,8 @@ module.exports = {
   getTransactions: function(req, res, next) {
     let transactions = [];
     transactionModels.getTransactions(req.con, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        transactions = results;
-        res.json({ data: transactions });
-      }
+      transactions = results;
+      res.json({ data: transactions });
     });
   },
   getTransaction: function(req, res, next) {
@@ -18,7 +14,7 @@ module.exports = {
       results
     ) {
       let transaction = {};
-      if (error) {
+      if (error || results.length == 0) {
         next(error);
       } else {
         transaction = results;
@@ -27,11 +23,14 @@ module.exports = {
     });
   },
   createTransaction: function(req, res, next) {
-    transactionModels.createTransaction(req.con, req.body, function(error) {
+    transactionModels.createTransaction(req.con, req.body, function(
+      error,
+      results
+    ) {
       if (error) {
         next(error);
       } else {
-        res.sendStatus("200");
+        res.json({ status: "200", returning_id: results.insertId });
       }
     });
   },

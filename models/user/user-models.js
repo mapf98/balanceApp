@@ -22,7 +22,7 @@ module.exports = {
   },
   updateUser: function(con, id, body, callback) {
     con.query(
-      "UPDATE USUARIO SET user_first_name = ?, user_last_name = ?, user_email = ?, user_alias = ?, user_birthdate = ?, user_password = ?, user_create_date = ? WHERE user_id = ?;",
+      "UPDATE USUARIO SET user_first_name = ?, user_last_name = ?, user_email = ?, user_alias = ?, user_birthdate = ?, user_password = ? WHERE user_id = ?;",
       [
         body.user_first_name,
         body.user_last_name,
@@ -30,7 +30,6 @@ module.exports = {
         body.user_alias,
         body.user_birthdate,
         body.user_password,
-        body.user_create_date,
         id
       ],
       callback

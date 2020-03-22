@@ -7,12 +7,8 @@ module.exports = {
       error,
       results
     ) {
-      if (error) {
-        next(error);
-      } else {
-        currenciesHistory = results;
-        res.json({ data: currenciesHistory });
-      }
+      currenciesHistory = results;
+      res.json({ data: currenciesHistory });
     });
   },
   getCurrencyHistory: function(req, res, next) {
@@ -21,7 +17,7 @@ module.exports = {
       results
     ) {
       let currencyHistory = {};
-      if (error) {
+      if (error || results.length == 0) {
         next(error);
       } else {
         currencyHistory = results;
@@ -31,12 +27,13 @@ module.exports = {
   },
   createCurrencyHistory: function(req, res, next) {
     currencyHistoryModels.createCurrencyHistory(req.con, req.body, function(
-      error
+      error,
+      results
     ) {
       if (error) {
         next(error);
       } else {
-        res.sendStatus("200");
+        res.json({ status: "200", returning_id: results.insertId });
       }
     });
   },

@@ -4,18 +4,14 @@ module.exports = {
   getUsers: function(req, res, next) {
     let users = [];
     userModels.getUsers(req.con, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        users = results;
-        res.json({ data: users });
-      }
+      users = results;
+      res.json({ data: users });
     });
   },
   getUser: function(req, res, next) {
     userModels.getUser(req.con, req.params.id, function(error, results) {
       let user = {};
-      if (error) {
+      if (error || results.length == 0) {
         next(error);
       } else {
         user = results;
@@ -24,11 +20,11 @@ module.exports = {
     });
   },
   createUser: function(req, res, next) {
-    userModels.createUser(req.con, req.body, function(error) {
+    userModels.createUser(req.con, req.body, function(error, results) {
       if (error) {
         next(error);
       } else {
-        res.sendStatus("200");
+        res.json({ status: "200", returning_id: results.insertId });
       }
     });
   },

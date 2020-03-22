@@ -8,19 +8,14 @@ module.exports = {
   createCategory: function(con, body, callback) {
     con.query(
       "INSERT INTO CATEGORIA (category_name) VALUES (?);",
-      [
-        body.category_name
-      ],
+      [body.category_name],
       callback
     );
   },
   updateCategory: function(con, id, body, callback) {
     con.query(
       "UPDATE CATEGORIA SET category_name = ? WHERE category_id = ?;",
-      [
-        body.category_name,
-        id
-      ],
+      [body.category_name, id],
       callback
     );
   },

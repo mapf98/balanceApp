@@ -4,12 +4,8 @@ module.exports = {
   getFeedbacks: function(req, res, next) {
     let feedbacks = [];
     feedbackModels.getFeedbacks(req.con, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        feedbacks = results;
-        res.json({ data: feedbacks });
-      }
+      feedbacks = results;
+      res.json({ data: feedbacks });
     });
   },
   getFeedback: function(req, res, next) {
@@ -18,7 +14,7 @@ module.exports = {
       results
     ) {
       let feedback = {};
-      if (error) {
+      if (error || results.length == 0) {
         next(error);
       } else {
         feedback = results;
@@ -27,11 +23,11 @@ module.exports = {
     });
   },
   createFeedback: function(req, res, next) {
-    feedbackModels.createFeedback(req.con, req.body, function(error) {
+    feedbackModels.createFeedback(req.con, req.body, function(error, results) {
       if (error) {
         next(error);
       } else {
-        res.sendStatus("200");
+        res.json({ status: "200", returning_id: results.insertId });
       }
     });
   },

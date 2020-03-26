@@ -9,7 +9,6 @@ const chalk = require("chalk");
 const path = require("path");
 const bodyParser = require("body-parser");
 const errorhandler = require("errorhandler");
-const isProduction = process.env.NODE_ENV === "production";
 const connectionBD = require("./config/dbmysql.js");
 
 app.use(compression());
@@ -51,9 +50,25 @@ const router = require("./routes/router.js");
 // routing
 app.use("/balance/api/", router);
 
-// if (!isProduction) {
-//   app.use(errorhandler());
-// }
+// only use on development
+if (process.env.NODE_ENV === "development") {
+  app.use(errorhandler({ log: errorLogger }));
+}
+
+function errorLogger(err, str, req) {
+  const error = `[${req._startTime}] Error in ${req.method} ${req.url} | Error code: ${err.code} | SQL Mesg: ${err.sqlMessage} | Query: ${err.sql} \n`;
+
+  //console.log(error);
+  fs.writeFile(
+    "./logs/errors.log",
+    error,
+    {
+      encoding: "utf8",
+      flag: "a"
+    },
+    function(err) {}
+  );
+}
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -61,25 +76,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-/// error handlers
-
-// development error handler
-// will print stacktrace
-// if (!isProduction) {
-//   app.use(function(err, req, res) {
-//     console.log(err.stack);
-
-//     res.status(err.status || 500);
-
-//     res.json({
-//       errors: {
-//         message: err.message,
-//         error: err
-//       }
-//     });
-//   });
-// }
 
 // production error handler
 // no stacktraces leaked to user

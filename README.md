@@ -114,7 +114,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * En versiones anteriores agregar eliminar el .gitignore y eliminar el node_modules junto con el .lock.
 * Eliminar el .env por seguridad.
 
-## Sistemas por desarrollar
+#### Sistemas por desarrollar
 
 * Sistema de información monetaria en tiempo real.
 * Sistema de autorización mediante Token.

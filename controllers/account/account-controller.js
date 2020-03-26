@@ -39,9 +39,26 @@ module.exports = {
       }
     });
   },
+  changeStatusAccount: function(req, res, next) {
+    accountModels.changeStatusAccount(
+      req.con,
+      req.params.id,
+      req.body,
+      function(error) {
+        if (error) {
+          next(error);
+        } else {
+          res.sendStatus("200");
+        }
+      }
+    );
+  },
   deleteAccount: function(req, res, next) {
-    accountModels.deleteAccount(req.con, req.params.id, function(error) {
-      if (error) {
+    accountModels.deleteAccount(req.con, req.params.id, function(
+      error,
+      results
+    ) {
+      if (error || results.affectedRows == 0) {
         next(error);
       } else {
         res.sendStatus("200");

@@ -37,9 +37,20 @@ module.exports = {
       }
     });
   },
-  deleteUser: function(req, res, next) {
-    userModels.deleteUser(req.con, req.params.id, function(error) {
+  changeStatusUser: function(req, res, next) {
+    userModels.changeStatusUser(req.con, req.params.id, req.body, function(
+      error
+    ) {
       if (error) {
+        next(error);
+      } else {
+        res.sendStatus("200");
+      }
+    });
+  },
+  deleteUser: function(req, res, next) {
+    userModels.deleteUser(req.con, req.params.id, function(error, results) {
+      if (error || results.affectedRows == 0) {
         next(error);
       } else {
         res.sendStatus("200");

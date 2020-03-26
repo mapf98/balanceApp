@@ -55,8 +55,8 @@ module.exports = {
     currencyHistoryModels.deleteCurrencyHistory(
       req.con,
       req.params.id,
-      function(error) {
-        if (error) {
+      function(error, results) {
+        if (error || results.affectedRows == 0) {
           next(error);
         } else {
           res.sendStatus("200");

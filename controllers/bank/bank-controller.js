@@ -38,8 +38,8 @@ module.exports = {
     });
   },
   deleteBank: function(req, res, next) {
-    bankModels.deleteBank(req.con, req.params.id, function(error) {
-      if (error) {
+    bankModels.deleteBank(req.con, req.params.id, function(error, results) {
+      if (error || results.affectedRows == 0) {
         next(error);
       } else {
         res.sendStatus("200");

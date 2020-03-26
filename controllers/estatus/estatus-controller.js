@@ -40,8 +40,8 @@ module.exports = {
     });
   },
   deleteStatus: function(req, res, next) {
-    statusModels.deleteStatus(req.con, req.params.id, function(error) {
-      if (error) {
+    statusModels.deleteStatus(req.con, req.params.id, function(error, results) {
+      if (error || results.affectedRows == 0) {
         next(error);
       } else {
         res.sendStatus("200");

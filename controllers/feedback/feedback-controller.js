@@ -43,8 +43,11 @@ module.exports = {
     });
   },
   deleteFeedback: function(req, res, next) {
-    feedbackModels.deleteFeedback(req.con, req.params.id, function(error) {
-      if (error) {
+    feedbackModels.deleteFeedback(req.con, req.params.id, function(
+      error,
+      results
+    ) {
+      if (error || results.affectedRows == 0) {
         next(error);
       } else {
         res.sendStatus("200");

@@ -43,8 +43,11 @@ module.exports = {
     });
   },
   deleteCategory: function(req, res, next) {
-    categoryModels.deleteCategory(req.con, req.params.id, function(error) {
-      if (error) {
+    categoryModels.deleteCategory(req.con, req.params.id, function(
+      error,
+      results
+    ) {
+      if (error || results.affectedRows == 0) {
         next(error);
       } else {
         res.sendStatus("200");

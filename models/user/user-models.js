@@ -37,11 +37,14 @@ module.exports = {
       callback
     );
   },
-  deleteUser: function(con, id, callback) {
+  changeStatusUser: function(con, id, body, callback) {
     con.query(
       "UPDATE USUARIO SET fk_status_id = (SELECT status_id FROM ESTATUS WHERE status_name = ?) WHERE user_id = ? ;",
-      ["REMOVE", id],
+      [body.status_name, id],
       callback
     );
+  },
+  deleteUser: function(con, id, callback) {
+    con.query("DELETE FROM USUARIO WHERE user_id = ?;", [id], callback);
   }
 };

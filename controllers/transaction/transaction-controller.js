@@ -50,9 +50,10 @@ module.exports = {
   },
   deleteTransaction: function(req, res, next) {
     transactionModels.deleteTransaction(req.con, req.params.id, function(
-      error
+      error,
+      results
     ) {
-      if (error) {
+      if (error || results.affectedRows == 0) {
         next(error);
       } else {
         res.sendStatus("200");

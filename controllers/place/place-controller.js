@@ -38,8 +38,8 @@ module.exports = {
     });
   },
   deletePlace: function(req, res, next) {
-    placeModels.deletePlace(req.con, req.params.id, function(error) {
-      if (error) {
+    placeModels.deletePlace(req.con, req.params.id, function(error, results) {
+      if (error || results.affectedRows == 0) {
         next(error);
       } else {
         res.sendStatus("200");

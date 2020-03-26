@@ -40,8 +40,11 @@ module.exports = {
     });
   },
   deleteProfile: function(req, res, next) {
-    profileModels.deleteProfile(req.con, req.params.id, function(error) {
-      if (error) {
+    profileModels.deleteProfile(req.con, req.params.id, function(
+      error,
+      results
+    ) {
+      if (error || results.affectedRows == 0) {
         next(error);
       } else {
         res.sendStatus("200");

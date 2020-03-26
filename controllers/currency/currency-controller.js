@@ -43,8 +43,11 @@ module.exports = {
     });
   },
   deleteCurrency: function(req, res, next) {
-    currencyModels.deleteCurrency(req.con, req.params.id, function(error) {
-      if (error) {
+    currencyModels.deleteCurrency(req.con, req.params.id, function(
+      error,
+      results
+    ) {
+      if (error || results.affectedRows == 0) {
         next(error);
       } else {
         res.sendStatus("200");

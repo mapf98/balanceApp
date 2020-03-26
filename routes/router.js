@@ -17,6 +17,7 @@ router.get("/users", userController.getUsers);
 router.get("/users/:id", userController.getUser);
 router.post("/users/create", userController.createUser);
 router.put("/users/update/:id", userController.updateUser);
+router.put("/users/change-status/:id", userController.changeStatusUser);
 router.delete("/users/delete/:id", userController.deleteUser);
 
 //CRUD BANCO
@@ -38,6 +39,10 @@ router.get("/accounts", accountController.getAccounts);
 router.get("/accounts/:id", accountController.getAccount);
 router.post("/accounts/create", accountController.createAccount);
 router.put("/accounts/update/:id", accountController.updateAccount);
+router.put(
+  "/accounts/change-status/:id",
+  accountController.changeStatusAccount
+);
 router.delete("/accounts/delete/:id", accountController.deleteAccount);
 
 //CRUD TRANSACCION

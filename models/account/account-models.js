@@ -35,11 +35,14 @@ module.exports = {
       callback
     );
   },
-  deleteAccount: function(con, id, callback) {
+  changeStatusAccount: function(con, id, body, callback) {
     con.query(
       "UPDATE CUENTA SET fk_status_id = (SELECT status_id FROM ESTATUS WHERE status_name = ?) WHERE account_id = ?;",
-      ["REMOVE", id],
+      [body.status_name, id],
       callback
     );
+  },
+  deleteAccount: function(con, id, callback) {
+    con.query("DELETE FROM CUENTA WHERE account_id = ?;", [id], callback);
   }
 };

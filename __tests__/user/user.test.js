@@ -1,9 +1,7 @@
-const request = require("supertest");
 const app = require("../../app.js");
+const axios = require("axios");
 
 describe("Users Test", () => {
-  let insert_id = 0;
-
   test("Check Method GET", done => {
     request(app)
       .get("/balance/api/users")
@@ -13,23 +11,23 @@ describe("Users Test", () => {
       });
   });
 
-  test("Success Check Method GET", done => {
-    request(app)
-      .get("/balance/api/users/1")
-      .then(response => {
-        expect(response.statusCode).toBe(200);
-        done();
-      });
-  });
+  // test("Success Check Method GET", done => {
+  //   request(app)
+  //     .get("/balance/api/users/1")
+  //     .then(response => {
+  //       expect(response.statusCode).toBe(200);
+  //       done();
+  //     });
+  // });
 
-  test("Failure Check Method GET", done => {
-    request(app)
-      .get("/balance/api/users/-1")
-      .then(response => {
-        expect(response.statusCode).not.toBe(200);
-        done();
-      });
-  });
+  // test("Failure Check Method GET", done => {
+  //   request(app)
+  //     .get("/balance/api/users/-1")
+  //     .then(response => {
+  //       expect(response.statusCode).not.toBe(200);
+  //       done();
+  //     });
+  // });
 
   // test("Failure Check Methoh POST", done => {
   //   const user = {

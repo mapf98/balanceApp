@@ -4,7 +4,7 @@
   "description": "BalanceApp - Apliacion de finanzas personales",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage --runInBand --detectOpenHandles",
     "start": "nodemon server.js"
   },
   "repository": {

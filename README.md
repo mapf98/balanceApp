@@ -11,6 +11,7 @@ API para Balance, aplicación de finanzas personales.
 * Se integró el módulo Helmet para seguridad y evitar ataques en las peticiones.
 * Se integró ESLint como linter de código.
 * Se integró Prettier como formateador de código.
+* Se agregó la suite de pruebas de la API.
 
 ## Pre-requisitos 📋
 
@@ -46,7 +47,12 @@ npm start
 
 #### Pruebas Unitarias 🔩
 
-_Ejecución de pruebas unitarias por definir_
+_Estas instrucciones te permitirán ejecutar las pruebas unitarias de la API, en estas se podrá verificar que cualquier parte del código ha sido probada de manera atómica y particular._
+
+* Ejecuta el siguiente código para ejecutar las pruebas unitarias y obtener la cobertura de código actual:
+```
+npm run test
+```
 
 #### Pruebas de lógica de aplicación ⌨️
 
@@ -91,8 +97,6 @@ _Por definir_
 * Morgan
 * Chalk
 * Helmet
-* ESLint
-* Prettier
 
 ## Wiki 📖
 
@@ -109,8 +113,6 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * En versiones anteriores agregar el .gitignore y eliminar el node_modules junto con el .lock.
 * En versiones anteriores agregar eliminar el .gitignore y eliminar el node_modules junto con el .lock.
 * Eliminar el .env por seguridad.
-* Agregar pruebas unitarias.
-* Agregar formateador de código.
 
 ## Sistemas por desarrollar
 
@@ -120,11 +122,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 #### Configuraciones de proyecto
 
-* Reglas de estilo de código.
-* Reglas de markdownlint.
-* ENV para producción.
-* Agregar etiqueta de versiones a la API.
-* Agregar linter de código.
+* Agregar etiqueta de versiones a la API en el README.
 
 #### Mejoras en BD
 
@@ -137,7 +135,6 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 ## Temas de interés por investigar 🎓
 
-* Investigar uso de rutas dinámicas.
 * Investigar cookie-session y session stores.
 * Investigar http-errors.
 * Investigar configuración de CORS.
@@ -154,7 +151,6 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 ## Sugerencias 🚀
 
 * Se puede crear un sistema rotatorio de archivos con morgan para llevar un logger diario de las peticiones realizadas a la API.
-* Agregar logger en archivo para errores.
 
 ## Autores ✒️
 

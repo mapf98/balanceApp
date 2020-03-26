@@ -1,5 +1,5 @@
+const request = require("supertest");
 const app = require("../../app.js");
-const axios = require("axios");
 
 describe("Users Test", () => {
   test("Check Method GET", done => {

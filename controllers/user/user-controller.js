@@ -1,4 +1,5 @@
 const userModels = require("../../models/user/user-models.js");
+const auth = require("../../services/auth.js");
 
 module.exports = {
   getUsers: function(req, res, next) {
@@ -24,7 +25,12 @@ module.exports = {
       if (error) {
         next(error);
       } else {
-        res.json({ status: "200", returning_id: results.insertId });
+        const token = auth.createToken(results.insertId);
+        res.json({
+          status: "200",
+          token: token,
+          returning_id: results.insertId
+        });
       }
     });
   },

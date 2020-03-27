@@ -1,12 +1,16 @@
 const request = require("supertest");
 const app = require("../../app.js");
+const auth = require("../../services/auth.js");
 
 describe("Feedbacks Test", () => {
   let insert_id = 0;
+  const user_id = 1;
+  const token = auth.createToken(user_id);
 
   test("Check Method GET", done => {
     request(app)
       .get("/balance/api/feedbacks")
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -16,6 +20,7 @@ describe("Feedbacks Test", () => {
   test("Success Check Method GET", done => {
     request(app)
       .get("/balance/api/feedbacks/1")
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -25,6 +30,7 @@ describe("Feedbacks Test", () => {
   test("Failure Check Method GET", done => {
     request(app)
       .get("/balance/api/feedbacks/-1")
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -41,6 +47,7 @@ describe("Feedbacks Test", () => {
     request(app)
       .post("/balance/api/feedbacks/create")
       .send(feedback)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         insert_id = response.body.returning_id;
         expect(response.statusCode).toBe(200);
@@ -58,6 +65,7 @@ describe("Feedbacks Test", () => {
     request(app)
       .post("/balance/api/feedbacks/create")
       .send(feedback)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -74,6 +82,7 @@ describe("Feedbacks Test", () => {
     request(app)
       .put(`/balance/api/feedbacks/update/${insert_id}`)
       .send(feedback)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -90,6 +99,7 @@ describe("Feedbacks Test", () => {
     request(app)
       .put(`/balance/api/feedbacks/update/${insert_id}`)
       .send(feedback)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -99,6 +109,7 @@ describe("Feedbacks Test", () => {
   test("Success Check Method DELETE", done => {
     request(app)
       .delete(`/balance/api/feedbacks/delete/${insert_id}`)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -108,6 +119,7 @@ describe("Feedbacks Test", () => {
   test("Failure Check Method DELETE", done => {
     request(app)
       .delete(`/balance/api/feedbacks/delete/-1`)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();

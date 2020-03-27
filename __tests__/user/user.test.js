@@ -1,52 +1,10 @@
 const request = require("supertest");
 const app = require("../../app.js");
+const jwt = require("jwt-simple");
 
 describe("Users Test", () => {
-  test("Check Method GET", done => {
-    request(app)
-      .get("/balance/api/users")
-      .then(response => {
-        expect(response.statusCode).toBe(200);
-        done();
-      });
-  });
-
-  test("Success Check Method GET", done => {
-    request(app)
-      .get("/balance/api/users/1")
-      .then(response => {
-        expect(response.statusCode).toBe(200);
-        done();
-      });
-  });
-
-  test("Failure Check Method GET", done => {
-    request(app)
-      .get("/balance/api/users/-1")
-      .then(response => {
-        expect(response.statusCode).not.toBe(200);
-        done();
-      });
-  });
-
-  test("Failure Check Methoh POST", done => {
-    const user = {
-      user_first_name: 1111,
-      user_last_name: "Apellido Test",
-      user_email: "test@gmail.com",
-      user_alias: 333,
-      user_birthdate: "1998-04-100",
-      user_password: 2222,
-      fk_status_id: 1
-    };
-    request(app)
-      .post("/balance/api/users/create")
-      .send(user)
-      .then(response => {
-        expect(response.statusCode).not.toBe(200);
-        done();
-      });
-  });
+  let token = null;
+  let insert_id = 0;
 
   test("Success Check Methoh POST", done => {
     const user = {
@@ -63,8 +21,58 @@ describe("Users Test", () => {
       .post("/balance/api/users/create")
       .send(user)
       .then(response => {
+        token = response.body.token;
         insert_id = response.body.returning_id;
+        expect(parseInt(response.body.status)).toBe(200);
+        done();
+      });
+  });
+
+  test("Failure Check Methoh POST", done => {
+    const user = {
+      user_first_name: null,
+      user_last_name: null,
+      user_email: null,
+      user_alias: null,
+      user_birthdate: null,
+      user_password: null,
+      fk_status_id: null
+    };
+    request(app)
+      .post("/balance/api/users/create")
+      .send(user)
+      .then(response => {
+        expect(response.body.status).not.toBe(200);
+        done();
+      });
+  });
+
+  test("Check Method GET", done => {
+    request(app)
+      .get("/balance/api/users")
+      .set("Authorization", "Bearer " + token)
+      .then(response => {
         expect(response.statusCode).toBe(200);
+        done();
+      });
+  });
+
+  test("Success Check Method GET", done => {
+    request(app)
+      .get(`/balance/api/users/${insert_id}`)
+      .set("Authorization", "Bearer " + token)
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+        done();
+      });
+  });
+
+  test("Failure Check Method GET", done => {
+    request(app)
+      .get("/balance/api/users/-1")
+      .set("Authorization", "Bearer " + token)
+      .then(response => {
+        expect(response.statusCode).not.toBe(200);
         done();
       });
   });
@@ -82,6 +90,7 @@ describe("Users Test", () => {
     request(app)
       .put(`/balance/api/users/update/${insert_id}`)
       .send(user)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -101,6 +110,7 @@ describe("Users Test", () => {
     request(app)
       .put(`/balance/api/users/update/${insert_id}`)
       .send(user)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -114,6 +124,7 @@ describe("Users Test", () => {
     request(app)
       .put(`/balance/api/users/change-status/${insert_id}`)
       .send(status)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -127,6 +138,7 @@ describe("Users Test", () => {
     request(app)
       .put(`/balance/api/users/change-status/${insert_id}`)
       .send(status)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -136,6 +148,7 @@ describe("Users Test", () => {
   test("Success Check Method DELETE", done => {
     request(app)
       .delete(`/balance/api/users/delete/${insert_id}`)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -145,6 +158,7 @@ describe("Users Test", () => {
   test("Failure Check Method DELETE", done => {
     request(app)
       .delete("/balance/api/users/delete/-1")
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();

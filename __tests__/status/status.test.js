@@ -1,12 +1,16 @@
 const request = require("supertest");
 const app = require("../../app.js");
+const auth = require("../../services/auth.js");
 
 describe("Statuses Test", () => {
   let insert_id = 0;
+  const user_id = 1;
+  const token = auth.createToken(user_id);
 
   test("Check Method GET", done => {
     request(app)
       .get("/balance/api/statuses")
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -16,6 +20,7 @@ describe("Statuses Test", () => {
   test("Success Check Method GET", done => {
     request(app)
       .get("/balance/api/statuses/1")
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -25,6 +30,7 @@ describe("Statuses Test", () => {
   test("Failure Check Method GET", done => {
     request(app)
       .get("/balance/api/statuses/-1")
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -38,6 +44,7 @@ describe("Statuses Test", () => {
     request(app)
       .post("/balance/api/statuses/create")
       .send(status)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         insert_id = response.body.returning_id;
         expect(response.statusCode).toBe(200);
@@ -52,6 +59,7 @@ describe("Statuses Test", () => {
     request(app)
       .post("/balance/api/statuses/create")
       .send(status)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -65,6 +73,7 @@ describe("Statuses Test", () => {
     request(app)
       .put(`/balance/api/statuses/update/${insert_id}`)
       .send(status)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -78,6 +87,7 @@ describe("Statuses Test", () => {
     request(app)
       .put(`/balance/api/statuses/update/${insert_id}`)
       .send(status)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -87,6 +97,7 @@ describe("Statuses Test", () => {
   test("Success Check Method DELETE", done => {
     request(app)
       .delete(`/balance/api/statuses/delete/${insert_id}`)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -96,6 +107,7 @@ describe("Statuses Test", () => {
   test("Failure Check Method DELETE", done => {
     request(app)
       .delete(`/balance/api/statuses/delete/-1`)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();

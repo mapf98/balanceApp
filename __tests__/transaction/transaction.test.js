@@ -1,12 +1,16 @@
 const request = require("supertest");
 const app = require("../../app.js");
+const auth = require("../../services/auth.js");
 
 describe("Transactions Test", () => {
   let insert_id = 0;
+  const user_id = 1;
+  const token = auth.createToken(user_id);
 
   test("Check Method GET", done => {
     request(app)
       .get("/balance/api/transactions")
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -16,6 +20,7 @@ describe("Transactions Test", () => {
   test("Success Check Method GET", done => {
     request(app)
       .get("/balance/api/transactions/1")
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -25,6 +30,7 @@ describe("Transactions Test", () => {
   test("Failure Check Method GET", done => {
     request(app)
       .get("/balance/api/transactions/-1")
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -44,6 +50,7 @@ describe("Transactions Test", () => {
     request(app)
       .post("/balance/api/transactions/create")
       .send(transaction)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         insert_id = response.body.returning_id;
         expect(response.statusCode).toBe(200);
@@ -64,6 +71,7 @@ describe("Transactions Test", () => {
     request(app)
       .post("/balance/api/transactions/create")
       .send(transaction)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -83,6 +91,7 @@ describe("Transactions Test", () => {
     request(app)
       .put(`/balance/api/transactions/update/${insert_id}`)
       .send(transaction)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -102,6 +111,7 @@ describe("Transactions Test", () => {
     request(app)
       .put(`/balance/api/transactions/update/${insert_id}`)
       .send(transaction)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -111,6 +121,7 @@ describe("Transactions Test", () => {
   test("Success Check Method DELETE", done => {
     request(app)
       .delete(`/balance/api/transactions/delete/${insert_id}`)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -120,6 +131,7 @@ describe("Transactions Test", () => {
   test("Failure Check Method DELETE", done => {
     request(app)
       .delete(`/balance/api/transactions/delete/-1`)
+      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();

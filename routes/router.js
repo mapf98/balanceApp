@@ -11,14 +11,23 @@ const feedbackController = require("../controllers/feedback/feedback-controller.
 const placeController = require("../controllers/place/place-controller.js");
 const profileController = require("../controllers/profile/profile-controller.js");
 const categoryController = require("../controllers/category/category-controller.js");
+const auth = require("../services/auth.js");
 
 //CRUD USUARIO
-router.get("/users", userController.getUsers);
-router.get("/users/:id", userController.getUser);
+router.get("/users", auth.validateToken, userController.getUsers);
+router.get("/users/:id", auth.validateToken, userController.getUser);
 router.post("/users/create", userController.createUser);
-router.put("/users/update/:id", userController.updateUser);
-router.put("/users/change-status/:id", userController.changeStatusUser);
-router.delete("/users/delete/:id", userController.deleteUser);
+router.put("/users/update/:id", auth.validateToken, userController.updateUser);
+router.put(
+  "/users/change-status/:id",
+  auth.validateToken,
+  userController.changeStatusUser
+);
+router.delete(
+  "/users/delete/:id",
+  auth.validateToken,
+  userController.deleteUser
+);
 
 //CRUD BANCO
 router.get("/banks", bankController.getBanks);
@@ -35,23 +44,53 @@ router.put("/currencies/update/:id", currencyController.updateCurrency);
 router.delete("/currencies/delete/:id", currencyController.deleteCurrency);
 
 //CRUD CUENTA
-router.get("/accounts", accountController.getAccounts);
-router.get("/accounts/:id", accountController.getAccount);
-router.post("/accounts/create", accountController.createAccount);
-router.put("/accounts/update/:id", accountController.updateAccount);
+router.get("/accounts", auth.validateToken, accountController.getAccounts);
+router.get("/accounts/:id", auth.validateToken, accountController.getAccount);
+router.post(
+  "/accounts/create",
+  auth.validateToken,
+  accountController.createAccount
+);
+router.put(
+  "/accounts/update/:id",
+  auth.validateToken,
+  accountController.updateAccount
+);
 router.put(
   "/accounts/change-status/:id",
+  auth.validateToken,
   accountController.changeStatusAccount
 );
-router.delete("/accounts/delete/:id", accountController.deleteAccount);
+router.delete(
+  "/accounts/delete/:id",
+  auth.validateToken,
+  accountController.deleteAccount
+);
 
 //CRUD TRANSACCION
-router.get("/transactions", transactionController.getTransactions);
-router.get("/transactions/:id", transactionController.getTransaction);
-router.post("/transactions/create", transactionController.createTransaction);
-router.put("/transactions/update/:id", transactionController.updateTransaction);
+router.get(
+  "/transactions",
+  auth.validateToken,
+  transactionController.getTransactions
+);
+router.get(
+  "/transactions/:id",
+  auth.validateToken,
+  transactionController.getTransaction
+);
+router.post(
+  "/transactions/create",
+  auth.validateToken,
+  transactionController.createTransaction
+);
+router.put(
+  "/transactions/update/:id",
+  auth.validateToken,
+  transactionController.updateTransaction
+);
 router.delete(
   "/transactions/delete/:id",
+  auth.validateToken,
   transactionController.deleteTransaction
 );
 
@@ -65,31 +104,52 @@ router.delete("/statuses/delete/:id", statusController.deleteStatus);
 //CRUD HISTORIAL_MONEDA
 router.get(
   "/currencies-history",
+  auth.validateToken,
   currencyHistoryController.getCurrenciesHistory
 );
 router.get(
   "/currencies-history/:id",
+  auth.validateToken,
   currencyHistoryController.getCurrencyHistory
 );
 router.post(
   "/currencies-history/create",
+  auth.validateToken,
   currencyHistoryController.createCurrencyHistory
 );
 router.put(
   "/currencies-history/update/:id",
+  auth.validateToken,
   currencyHistoryController.updateCurrencyHistory
 );
 router.delete(
   "/currencies-history/delete/:id",
+  auth.validateToken,
   currencyHistoryController.deleteCurrencyHistory
 );
 
 //CRUD FEEDBACK
-router.get("/feedbacks", feedbackController.getFeedbacks);
-router.get("/feedbacks/:id", feedbackController.getFeedback);
-router.post("/feedbacks/create", feedbackController.createFeedback);
-router.put("/feedbacks/update/:id", feedbackController.updateFeedback);
-router.delete("/feedbacks/delete/:id", feedbackController.deleteFeedback);
+router.get("/feedbacks", auth.validateToken, feedbackController.getFeedbacks);
+router.get(
+  "/feedbacks/:id",
+  auth.validateToken,
+  feedbackController.getFeedback
+);
+router.post(
+  "/feedbacks/create",
+  auth.validateToken,
+  feedbackController.createFeedback
+);
+router.put(
+  "/feedbacks/update/:id",
+  auth.validateToken,
+  feedbackController.updateFeedback
+);
+router.delete(
+  "/feedbacks/delete/:id",
+  auth.validateToken,
+  feedbackController.deleteFeedback
+);
 
 //CRUD LUGAR
 router.get("/places", placeController.getPlaces);
@@ -99,11 +159,23 @@ router.put("/places/update/:id", placeController.updatePlace);
 router.delete("/places/delete/:id", placeController.deletePlace);
 
 //CRUD PROFILE
-router.get("/profiles", profileController.getProfiles);
-router.get("/profiles/:id", profileController.getProfile);
-router.post("/profiles/create", profileController.createProfile);
-router.put("/profiles/update/:id", profileController.updateProfile);
-router.delete("/profiles/delete/:id", profileController.deleteProfile);
+router.get("/profiles", auth.validateToken, profileController.getProfiles);
+router.get("/profiles/:id", auth.validateToken, profileController.getProfile);
+router.post(
+  "/profiles/create",
+  auth.validateToken,
+  profileController.createProfile
+);
+router.put(
+  "/profiles/update/:id",
+  auth.validateToken,
+  profileController.updateProfile
+);
+router.delete(
+  "/profiles/delete/:id",
+  auth.validateToken,
+  profileController.deleteProfile
+);
 
 //CRUD CATEGORY
 router.get("/categories", categoryController.getCategories);

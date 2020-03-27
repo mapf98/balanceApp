@@ -1,4 +1,4 @@
-# BalanceApp API (v1.3.0)
+# BalanceApp API (v1.4.0)
 
 API para Balance, aplicación de finanzas personales.
 
@@ -12,6 +12,7 @@ API para Balance, aplicación de finanzas personales.
 * Se integró ESLint como linter de código.
 * Se integró Prettier como formateador de código.
 * Se agregó la suite de pruebas de la API.
+* Se integró el modulo de Autorización en la API (JWT Tokens).
 
 ## Pre-requisitos 📋
 
@@ -97,6 +98,7 @@ _Por definir_
 * Morgan
 * Chalk
 * Helmet
+* jwt-simple
 
 ## Wiki 📖
 
@@ -112,12 +114,10 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 * En versiones anteriores agregar el .gitignore y eliminar el node_modules junto con el .lock.
 * En versiones anteriores agregar eliminar el .gitignore y eliminar el node_modules junto con el .lock.
-* Eliminar el .env por seguridad.
 
 #### Sistemas por desarrollar
 
 * Sistema de información monetaria en tiempo real.
-* Sistema de autorización mediante Token.
 * Sistema de cookies y sesión.
 
 #### Configuraciones de proyecto
@@ -142,8 +142,6 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 * Investigar login con cuentas de google o externos.
 * Investigar seguridad en BD.
 * Envio de correos electrónicos.
-* Token de ingreso.
-* Manejo de excepciones (investigar en donde es el lugar adecuado).
 * Investigar sobre Process Manager para Express (para producción).
 * Revisar temas de seguridad en [Express](https://expressjs.com/en/advanced/best-practice-security.html)
 * Revisar temas de optimización en [Express](https://expressjs.com/en/advanced/best-practice-performance.html)

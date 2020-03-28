@@ -47,7 +47,6 @@ describe("/balance/api/currencies-history", () => {
     request(app)
       .post("/balance/api/currencies-history/create")
       .send(currency_history)
-      .set("Authorization", "Bearer " + token)
       .then(response => {
         insert_id = response.body.returning_id;
         expect(response.statusCode).toBe(200);
@@ -65,7 +64,6 @@ describe("/balance/api/currencies-history", () => {
     request(app)
       .post("/balance/api/currencies-history/create")
       .send(currency_history)
-      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -82,7 +80,6 @@ describe("/balance/api/currencies-history", () => {
     request(app)
       .put(`/balance/api/currencies-history/update/${insert_id}`)
       .send(currency_history)
-      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -99,7 +96,6 @@ describe("/balance/api/currencies-history", () => {
     request(app)
       .put(`/balance/api/currencies-history/update/${insert_id}`)
       .send(currency_history)
-      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();
@@ -109,7 +105,6 @@ describe("/balance/api/currencies-history", () => {
   test("Success Check Method DELETE", done => {
     request(app)
       .delete(`/balance/api/currencies-history/delete/${insert_id}`)
-      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
@@ -119,7 +114,6 @@ describe("/balance/api/currencies-history", () => {
   test("Failure Check Method DELETE", done => {
     request(app)
       .delete(`/balance/api/currencies-history/delete/-1`)
-      .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();

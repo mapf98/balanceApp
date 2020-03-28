@@ -112,8 +112,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 #### API
 
-* En versiones anteriores agregar el .gitignore y eliminar el node_modules junto con el .lock.
-* En versiones anteriores agregar eliminar el .gitignore y eliminar el node_modules junto con el .lock.
+* En versiones anteriores agregar el .gitignore, eliminar el node_modules junto con el .lock y el .env.
 
 #### Sistemas por desarrollar
 

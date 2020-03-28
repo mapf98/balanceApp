@@ -114,17 +114,14 @@ router.get(
 );
 router.post(
   "/currencies-history/create",
-  auth.validateToken,
   currencyHistoryController.createCurrencyHistory
 );
 router.put(
   "/currencies-history/update/:id",
-  auth.validateToken,
   currencyHistoryController.updateCurrencyHistory
 );
 router.delete(
   "/currencies-history/delete/:id",
-  auth.validateToken,
   currencyHistoryController.deleteCurrencyHistory
 );
 

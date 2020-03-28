@@ -10,6 +10,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const errorhandler = require("errorhandler");
 const connectionBD = require("./config/dbmysql.js");
+const cron = require("node-cron");
+const axios = require("axios");
 
 app.use(compression());
 app.use(helmet());
@@ -75,6 +77,19 @@ app.use(function(req, res, next) {
   var err = new Error("Not Found");
   err.status = 404;
   next(err);
+});
+
+cron.schedule("* * * * *", next => {
+  axios
+    .get(
+      `https://openexchangerates.org/api/latest.json?app_id=${process.env.SECRET_API_CURRENCY_ID}&base=USD&show_alternative=1&symbols=EUR,VEF_BLKMKT`
+    )
+    .then(function(response) {
+      console.log(response);
+    })
+    .catch(function(error) {
+      next(error);
+    });
 });
 
 // production error handler

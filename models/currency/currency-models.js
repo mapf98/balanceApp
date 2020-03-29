@@ -17,10 +17,10 @@ module.exports = {
       callback
     );
   },
-  updateCurrency: function(con, id, body, callback) {
+  updateAODECurrency: function(con, body, callback) {
     con.query(
-      "UPDATE MONEDA SET currency_name = ?, currency_symbol = ?, currency_iso_code = ?, currency_amount_one_dollar_equivalent = ? WHERE currency_id = ?;",
-      [body.currency_name, body.currency_symbol, body.currency_iso_code, body.currency_amount_one_dollar_equivalent, id],
+      "UPDATE MONEDA SET currency_amount_one_dollar_equivalent = ? WHERE currency_iso_code = ?;",
+      [body.currency_amount_one_dollar_equivalent, body.currency_iso_code],
       callback
     );
   },

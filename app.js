@@ -98,6 +98,13 @@ cron.schedule(
               currency_iso_code: key
             }
           );
+          axios.put(
+            "http://localhost:3000/balance/api/currencies/update/aode",
+            {
+              currency_iso_code: key,
+              currency_amount_one_dollar_equivalent: response.data.rates[key]
+            }
+          );
         }
       })
       .catch(error => {

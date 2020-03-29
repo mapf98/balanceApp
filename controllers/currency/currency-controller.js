@@ -31,10 +31,8 @@ module.exports = {
       }
     });
   },
-  updateCurrency: function(req, res, next) {
-    currencyModels.updateCurrency(req.con, req.params.id, req.body, function(
-      error
-    ) {
+  updateAODECurrency: function(req, res, next) {
+    currencyModels.updateAODECurrency(req.con, req.body, function(error) {
       if (error) {
         next(error);
       } else {

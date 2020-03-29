@@ -40,7 +40,7 @@ router.delete("/banks/delete/:id", bankController.deleteBank);
 router.get("/currencies", currencyController.getCurrencies);
 router.get("/currencies/:id", currencyController.getCurrency);
 router.post("/currencies/create", currencyController.createCurrency);
-router.put("/currencies/update/:id", currencyController.updateCurrency);
+router.put("/currencies/update/aode", currencyController.updateAODECurrency);
 router.delete("/currencies/delete/:id", currencyController.deleteCurrency);
 
 //CRUD CUENTA

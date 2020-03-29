@@ -66,13 +66,11 @@ describe("Currencies Test", () => {
 
   test("Success Check Method PUT", done => {
     const currency = {
-      currency_name: "Prueba",
-      currency_symbol: "PRB",
-      currency_iso_code: "PRU",
+      currency_iso_code: "USD",
       currency_amount_one_dollar_equivalent: 100
     };
     request(app)
-      .put(`/balance/api/currencies/update/${insert_id}`)
+      .put(`/balance/api/currencies/update/aode`)
       .send(currency)
       .then(response => {
         expect(response.statusCode).toBe(200);
@@ -82,13 +80,11 @@ describe("Currencies Test", () => {
 
   test("Failure Check Method PUT", done => {
     const currency = {
-      currency_name: null,
-      currency_symbol: null,
-      currency_iso_code: null,
+      currency_iso_code: 111,
       currency_amount_one_dollar_equivalent: null
     };
     request(app)
-      .put(`/balance/api/currencies/update/${insert_id}`)
+      .put(`/balance/api/currencies/update/aode`)
       .send(currency)
       .then(response => {
         expect(response.statusCode).not.toBe(200);

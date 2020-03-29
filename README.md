@@ -13,6 +13,7 @@ API para Balance, aplicación de finanzas personales.
 * Se integró Prettier como formateador de código.
 * Se agregó la suite de pruebas de la API.
 * Se integró el modulo de Autorización en la API (JWT Tokens).
+* Se integró el sistema de actualización dinámico de moneda.
 
 ## Pre-requisitos 📋
 
@@ -119,7 +120,6 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 #### Sistemas por desarrollar
 
-* Sistema de información monetaria en tiempo real.
 * Sistema de cookies y sesión.
 
 #### Configuraciones de proyecto
@@ -151,6 +151,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 ## Sugerencias 🚀
 
 * Se puede crear un sistema rotatorio de archivos con morgan para llevar un logger diario de las peticiones realizadas a la API.
+* Aislar el sistema de actualización de moneda como un servicio dentro de la API.
 
 ## Autores ✒️
 

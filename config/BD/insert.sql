@@ -49,19 +49,12 @@ INSERT INTO BANCO (bank_name, fk_place_id) VALUES ('BFC', 5);
 SELECT * FROM BANCO;
 
 /*MONEDA*/
-INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Bolivares', 'Bs', 'VEF_BLKMKT', 73000);
+INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Bolivares', 'Bs', 'VEF_BLKMKT', 84723.01);
 INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Dolares', '$', 'USD', 1);
-INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Bolivares', '€', 'EUR', 0.9);
-INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Yenes', '¥', 'JPY', 1.8);
-INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Libra Esterlina', '£', 'GBP', 1.2);
+INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Euros', '€', 'EUR', 0.895375);
 SELECT * FROM MONEDA;
 
 /*HISTORIAL_MONEDA*/
-INSERT INTO HISTORIAL_MONEDA (currency_history_amount_one_dollar_equivalent, currency_history_date, fk_currency_id) VALUES ('74000', '2020-03-18', 1);
-INSERT INTO HISTORIAL_MONEDA (currency_history_amount_one_dollar_equivalent, currency_history_date, fk_currency_id) VALUES ('75000', '2020-03-18', 1);
-INSERT INTO HISTORIAL_MONEDA (currency_history_amount_one_dollar_equivalent, currency_history_date, fk_currency_id) VALUES ('78000', '2020-03-18', 1);
-INSERT INTO HISTORIAL_MONEDA (currency_history_amount_one_dollar_equivalent, currency_history_date, fk_currency_id) VALUES ('84000', '2020-03-18', 1);
-INSERT INTO HISTORIAL_MONEDA (currency_history_amount_one_dollar_equivalent, currency_history_date, fk_currency_id) VALUES ('101000', '2020-03-18', 1);
 SELECT * FROM HISTORIAL_MONEDA;
 
 /*PERFIL*/

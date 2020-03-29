@@ -49,7 +49,7 @@ INSERT INTO BANCO (bank_name, fk_place_id) VALUES ('BFC', 5);
 SELECT * FROM BANCO;
 
 /*MONEDA*/
-INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Bolivares', 'Bs', 'VES', 73000);
+INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Bolivares', 'Bs', 'VEF_BLKMKT', 73000);
 INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Dolares', '$', 'USD', 1);
 INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Bolivares', '€', 'EUR', 0.9);
 INSERT INTO MONEDA (currency_name, currency_symbol, currency_iso_code, currency_amount_one_dollar_equivalent) VALUES ('Yenes', '¥', 'JPY', 1.8);

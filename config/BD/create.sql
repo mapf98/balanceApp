@@ -24,7 +24,7 @@ CREATE TABLE MONEDA (
 	currency_id INTEGER NOT NULL AUTO_INCREMENT,
     currency_name VARCHAR(20) NOT NULL,
     currency_symbol VARCHAR(5) NOT NULL UNIQUE,
-    currency_iso_code VARCHAR(5) NOT NULL,
+    currency_iso_code VARCHAR(15) NOT NULL,
     currency_amount_one_dollar_equivalent DOUBLE NOT NULL,
 	PRIMARY KEY (currency_id)
 );

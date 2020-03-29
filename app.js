@@ -12,6 +12,7 @@ const errorhandler = require("errorhandler");
 const connectionBD = require("./config/dbmysql.js");
 const cron = require("node-cron");
 const axios = require("axios");
+const moment = require("moment");
 
 app.use(compression());
 app.use(helmet());
@@ -79,18 +80,35 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-cron.schedule("* * * * *", next => {
-  axios
-    .get(
-      `https://openexchangerates.org/api/latest.json?app_id=${process.env.SECRET_API_CURRENCY_ID}&base=USD&show_alternative=1&symbols=EUR,VEF_BLKMKT`
-    )
-    .then(function(response) {
-      console.log(response);
-    })
-    .catch(function(error) {
-      next(error);
-    });
-});
+cron.schedule(
+  "0 9,13,17,23 * * *",
+  () => {
+    axios
+      .get(
+        `https://openexchangerates.org/api/latest.json?app_id=${process.env.SECRET_API_CURRENCY_ID}&base=USD&show_alternative=1&symbols=EUR,VEF_BLKMKT`
+      )
+      .then(function(response) {
+        for (const key in response.data.rates) {
+          axios.post(
+            "http://localhost:3000/balance/api/currencies-history/create",
+            {
+              currency_history_amount_one_dollar_equivalent:
+                response.data.rates[key],
+              currency_history_date: moment().format("YYYY-MM-DD"),
+              currency_iso_code: key
+            }
+          );
+        }
+      })
+      .catch(error => {
+        console.log("Error: ", error.message);
+      });
+  },
+  {
+    scheduled: true,
+    timezone: "America/Caracas"
+  }
+);
 
 // production error handler
 // no stacktraces leaked to user

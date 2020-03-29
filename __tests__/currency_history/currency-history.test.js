@@ -39,10 +39,9 @@ describe("/balance/api/currencies-history", () => {
 
   test("Success Check Methoh POST", done => {
     const currency_history = {
-      currency_history_id: 1,
       currency_history_amount_one_dollar_equivalent: 100,
       currency_history_date: "2020-03-18",
-      fk_currency_id: 1
+      currency_iso_code: "USD"
     };
     request(app)
       .post("/balance/api/currencies-history/create")
@@ -56,10 +55,9 @@ describe("/balance/api/currencies-history", () => {
 
   test("Failure Check Methoh POST", done => {
     const currency_history = {
-      currency_history_id: null,
       currency_history_amount_one_dollar_equivalent: null,
       currency_history_date: null,
-      fk_currency_id: null
+      currency_iso_code: null
     };
     request(app)
       .post("/balance/api/currencies-history/create")
@@ -72,10 +70,9 @@ describe("/balance/api/currencies-history", () => {
 
   test("Success Check Method PUT", done => {
     const currency_history = {
-      currency_history_id: 1,
       currency_history_amount_one_dollar_equivalent: 100,
       currency_history_date: "2020-03-18",
-      fk_currency_id: 1
+      currency_iso_code: "USD"
     };
     request(app)
       .put(`/balance/api/currencies-history/update/${insert_id}`)
@@ -88,10 +85,9 @@ describe("/balance/api/currencies-history", () => {
 
   test("Failure Check Method PUT", done => {
     const currency_history = {
-      currency_history_id: null,
       currency_history_amount_one_dollar_equivalent: null,
       currency_history_date: null,
-      fk_currency_id: null
+      currency_iso_code: null
     };
     request(app)
       .put(`/balance/api/currencies-history/update/${insert_id}`)

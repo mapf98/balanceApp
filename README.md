@@ -99,6 +99,9 @@ _Por definir_
 * Chalk
 * Helmet
 * jwt-simple
+* Moment
+* Axios
+* node-cron
 
 ## Wiki 📖
 

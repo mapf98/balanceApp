@@ -138,6 +138,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 ## Temas de interés por investigar 🎓
 
+* Investigar sobre le uso de webpack y sus veneficios para una API.
 * Investigar login con cuentas de google o externos.
 * Investigar sobre Process Manager para Express (para producción).
 * Revisar temas de seguridad en [Express](https://expressjs.com/en/advanced/best-practice-security.html)

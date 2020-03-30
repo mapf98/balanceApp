@@ -13,6 +13,9 @@ const connectionBD = require("./config/dbmysql.js");
 const cron = require("node-cron");
 const axios = require("axios");
 const moment = require("moment");
+const cors = require("cors");
+
+app.use(cors());
 
 app.use(compression());
 app.use(helmet());

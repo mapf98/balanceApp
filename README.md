@@ -103,6 +103,7 @@ _Por definir_
 * Moment
 * Axios
 * node-cron
+* cros
 
 ## Wiki 📖
 
@@ -137,13 +138,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 ## Temas de interés por investigar 🎓
 
-* Investigar cookie-session y session stores.
-* Investigar http-errors.
-* Investigar configuración de CORS.
-* Investigar uso de COOKIES.
 * Investigar login con cuentas de google o externos.
-* Investigar seguridad en BD.
-* Envio de correos electrónicos.
 * Investigar sobre Process Manager para Express (para producción).
 * Revisar temas de seguridad en [Express](https://expressjs.com/en/advanced/best-practice-security.html)
 * Revisar temas de optimización en [Express](https://expressjs.com/en/advanced/best-practice-performance.html)
@@ -152,6 +147,9 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 * Se puede crear un sistema rotatorio de archivos con morgan para llevar un logger diario de las peticiones realizadas a la API.
 * Aislar el sistema de actualización de moneda como un servicio dentro de la API.
+* Se puede usar http-errors como un estándar de errores.
+* Se puede incluir el envio de emails con nodemailer para futuras funcionalidades.
+* Se puede incluir seguridad y mayores niveles de validación en BD.
 
 ## Autores ✒️
 

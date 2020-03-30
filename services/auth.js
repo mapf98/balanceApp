@@ -18,8 +18,10 @@ function validateToken(req, res, next) {
 
   const token = req.headers.authorization.split(" ")[1];
   const payload = jwt.decode(token, process.env.SECRET_TOKEN);
+  const tokenExp = new Date(payload.exp);
+  const actualDate = new Date(moment());
 
-  if (payload.exp <= moment()) {
+  if (tokenExp <= actualDate) {
     return res.status(401).send({ message: "Token expirado" });
   }
 

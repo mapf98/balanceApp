@@ -121,7 +121,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 
 #### Sistemas por desarrollar
 
-* Sistema de cookies y sesión.
+_Por los momentos no hay sistemas por desarrollar_
 
 #### Configuraciones de proyecto
 

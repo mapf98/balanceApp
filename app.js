@@ -31,16 +31,6 @@ app.use(
       chalk.blue("Time: :response-time[digits] ms")
   )
 );
-app.use(
-  morgan(
-    "[:date[web]] --> HTTP (v:http-version) | :method -> :url | :status | Time: :response-time[digits] ms",
-    {
-      stream: fs.createWriteStream(path.join("./logs", "access.log"), {
-        flags: "a"
-      })
-    }
-  )
-);
 app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -59,6 +49,16 @@ app.use("/balance/api/", router);
 // only use on development
 if (process.env.NODE_ENV === "development") {
   app.use(errorhandler({ log: errorLogger }));
+  app.use(
+    morgan(
+      "[:date[web]] --> HTTP (v:http-version) | :method -> :url | :status | Time: :response-time[digits] ms",
+      {
+        stream: fs.createWriteStream(path.join("./logs", "access.log"), {
+          flags: "a"
+        })
+      }
+    )
+  );
 }
 
 function errorLogger(err, str, req) {

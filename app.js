@@ -49,22 +49,17 @@ app.use("/balance/api/", router);
 // only use on development
 if (process.env.NODE_ENV === "development") {
   app.use(errorhandler({ log: errorLogger }));
-  app.use(
-    morgan(
-      "[:date[web]] --> HTTP (v:http-version) | :method -> :url | :status | Time: :response-time[digits] ms",
-      {
-        stream: fs.createWriteStream(path.join("./logs", "access.log"), {
-          flags: "a"
-        })
-      }
-    )
-  );
 }
 
 function errorLogger(err, str, req) {
-  const error = `[${req._startTime}] Error in ${req.method} ${req.url} | Error code: ${err.code} | SQL Mesg: ${err.sqlMessage} | Query: ${err.sql} \n`;
+  const error = `[${req._startTime}] Error in ${req.method} ${req.url} | ${
+    err.code === undefined
+      ? err.message.charAt(0).toUpperCase() + err.message.slice(1)
+      : `Error code: ${err.code} |`
+  } ${err.sqlMessage === undefined ? "" : `| SQL Mesg: ${err.sqlMessage}`} ${
+    err.sql === undefined ? "" : `Query: ${err.sql}`
+  } \n`;
 
-  //console.log(error);
   fs.writeFile(
     "./logs/errors.log",
     error,

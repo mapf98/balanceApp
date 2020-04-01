@@ -1,55 +1,48 @@
 const currencyModels = require("../../models/currency/currency-models.js");
+const createError = require("http-errors");
 
 module.exports = {
-  getCurrencies: function(req, res, next) {
-    let currencies = [];
-    currencyModels.getCurrencies(req.con, function(error, results) {
-      currencies = results;
-      res.json({ data: currencies });
-    });
+  getCurrencies: async function(req, res) {
+    let results = await currencyModels.getCurrencies(req.con);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  getCurrency: function(req, res, next) {
-    currencyModels.getCurrency(req.con, req.params.id, function(
-      error,
-      results
-    ) {
-      let currency = {};
-      if (error || results.length == 0) {
-        next(error);
-      } else {
-        currency = results;
-        res.json({ data: currency });
-      }
-    });
+  getCurrency: async function(req, res, next) {
+    let results = await currencyModels.getCurrency(req.con, req.params.id);
+    if (results.length === 0) {
+      next(createError(404, "Recurso NotFound"));
+    } else if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  createCurrency: function(req, res, next) {
-    currencyModels.createCurrency(req.con, req.body, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        res.json({ status: "200", returning_id: results.insertId });
-      }
-    });
+  createCurrency: async function(req, res, next) {
+    let results = await currencyModels.createCurrency(req.con, req.body);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ status: "200", returning_id: results[0].currency_id });
+    }
   },
-  updateAODECurrency: function(req, res, next) {
-    currencyModels.updateAODECurrency(req.con, req.body, function(error) {
-      if (error) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  updateAODECurrency: async function(req, res, next) {
+    let results = await currencyModels.updateAODECurrency(req.con, req.body);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      console.log(results);
+      res.sendStatus("200");
+    }
   },
-  deleteCurrency: function(req, res, next) {
-    currencyModels.deleteCurrency(req.con, req.params.id, function(
-      error,
-      results
-    ) {
-      if (error || results.affectedRows == 0) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  deleteCurrency: async function(req, res, next) {
+    let results = await currencyModels.deleteCurrency(req.con, req.params.id);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   }
 };

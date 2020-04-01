@@ -28,12 +28,14 @@
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
     "helmet": "^3.21.3",
+    "http-errors": "^1.7.3",
     "jwt-simple": "^0.5.6",
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
     "mysql": "github:mysqljs/mysql",
     "node-cron": "^2.0.3",
     "path": "^0.12.7",
+    "pg-promise": "^10.4.4",
     "serve-static": "^1.14.1"
   },
   "devDependencies": {

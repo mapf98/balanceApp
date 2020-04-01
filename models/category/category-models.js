@@ -1,25 +1,41 @@
 module.exports = {
-  getCategories: function(con, callback) {
-    con.query("SELECT * FROM CATEGORIA", callback);
+  getCategories: function(con) {
+    return con.query("SELECT * FROM CATEGORIA").catch(error => {
+      return new Error(error);
+    });
   },
-  getCategory: function(con, id, callback) {
-    con.query("SELECT * FROM CATEGORIA WHERE category_id = ? ", [id], callback);
+  getCategory: function(con, id) {
+    return con
+      .query("SELECT * FROM CATEGORIA WHERE category_id = $1", [id])
+      .catch(error => {
+        return new Error(error);
+      });
   },
-  createCategory: function(con, body, callback) {
-    con.query(
-      "INSERT INTO CATEGORIA (category_name) VALUES (?);",
-      [body.category_name],
-      callback
-    );
+  createCategory: function(con, body) {
+    return con
+      .query(
+        "INSERT INTO CATEGORIA (category_name) VALUES ($1) RETURNING category_id",
+        [body.category_name]
+      )
+      .catch(error => {
+        return new Error(error);
+      });
   },
-  updateCategory: function(con, id, body, callback) {
-    con.query(
-      "UPDATE CATEGORIA SET category_name = ? WHERE category_id = ?;",
-      [body.category_name, id],
-      callback
-    );
+  updateCategory: function(con, id, body) {
+    return con
+      .result(
+        "UPDATE CATEGORIA SET category_name = $1 WHERE category_id = $2;",
+        [body.category_name, id]
+      )
+      .catch(error => {
+        return new Error(error);
+      });
   },
-  deleteCategory: function(con, id, callback) {
-    con.query("DELETE FROM CATEGORIA WHERE category_id = ?;", [id], callback);
+  deleteCategory: function(con, id) {
+    return con
+      .result("DELETE FROM CATEGORIA WHERE category_id = $1;", [id])
+      .catch(error => {
+        return new Error(error);
+      });
   }
 };

@@ -1,66 +1,65 @@
 const userModels = require("../../models/user/user-models.js");
 const auth = require("../../services/auth.js");
+const createError = require("http-errors");
 
 module.exports = {
-  getUsers: function(req, res, next) {
-    let users = [];
-    userModels.getUsers(req.con, function(error, results) {
-      users = results;
-      res.json({ data: users });
-    });
+  getUsers: async function(req, res, next) {
+    let results = await userModels.getUsers(req.con);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  getUser: function(req, res, next) {
-    userModels.getUser(req.con, req.params.id, function(error, results) {
-      let user = {};
-      if (error || results.length == 0) {
-        next(error);
-      } else {
-        user = results;
-        res.json({ data: user });
-      }
-    });
+  getUser: async function(req, res, next) {
+    let results = await userModels.getUser(req.con, req.params.id);
+    if (results.length === 0) {
+      next(createError(404, "Recurso NotFound"));
+    } else if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  createUser: function(req, res, next) {
-    userModels.createUser(req.con, req.body, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        const token = auth.createToken(results.insertId);
-        res.json({
-          status: "200",
-          token: token,
-          returning_id: results.insertId
-        });
-      }
-    });
+  createUser: async function(req, res, next) {
+    let results = await userModels.createUser(req.con, req.body);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      const token = auth.createToken(results[0].user_id);
+      res.json({
+        status: "200",
+        token: token,
+        returning_id: results[0].user_id
+      });
+    }
   },
-  updateUser: function(req, res, next) {
-    userModels.updateUser(req.con, req.params.id, req.body, function(error) {
-      if (error) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  updateUser: async function(req, res, next) {
+    let results = await userModels.updateUser(req.con, req.params.id, req.body);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   },
-  changeStatusUser: function(req, res, next) {
-    userModels.changeStatusUser(req.con, req.params.id, req.body, function(
-      error
-    ) {
-      if (error) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  changeStatusUser: async function(req, res, next) {
+    let results = await userModels.changeStatusUser(
+      req.con,
+      req.params.id,
+      req.body
+    );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   },
-  deleteUser: function(req, res, next) {
-    userModels.deleteUser(req.con, req.params.id, function(error, results) {
-      if (error || results.affectedRows == 0) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  deleteUser: async function(req, res, next) {
+    let results = await userModels.deleteUser(req.con, req.params.id);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   }
 };

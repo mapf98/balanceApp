@@ -1,54 +1,51 @@
 const profileModels = require("../../models/profile/profile-models.js");
+const createError = require("http-errors");
 
 module.exports = {
-  getProfiles: function(req, res, next) {
-    let profiles = [];
-    profileModels.getProfiles(req.con, function(error, results) {
-      profiles = results;
-      res.json({ data: profiles });
-    });
+  getProfiles: async function(req, res, next) {
+    let results = await profileModels.getProfiles(req.con);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  getProfile: function(req, res, next) {
-    profileModels.getProfile(req.con, req.params.id, function(error, results) {
-      let profile = {};
-      if (error || results.length == 0) {
-        next(error);
-      } else {
-        profile = results;
-        res.json({ data: profile });
-      }
-    });
+  getProfile: async function(req, res, next) {
+    let results = await profileModels.getProfile(req.con, req.params.id);
+    if (results.length === 0) {
+      next(createError(404, "Recurso NotFound"));
+    } else if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  createProfile: function(req, res, next) {
-    profileModels.createProfile(req.con, req.body, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        res.json({ status: "200", returning_id: results.insertId });
-      }
-    });
+  createProfile: async function(req, res, next) {
+    let results = await profileModels.createProfile(req.con, req.body);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ status: "200", returning_id: results[0].profile_id });
+    }
   },
-  updateProfile: function(req, res, next) {
-    profileModels.updateProfile(req.con, req.params.id, req.body, function(
-      error
-    ) {
-      if (error) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  updateProfile: async function(req, res, next) {
+    let results = await profileModels.updateProfile(
+      req.con,
+      req.params.id,
+      req.body
+    );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   },
-  deleteProfile: function(req, res, next) {
-    profileModels.deleteProfile(req.con, req.params.id, function(
-      error,
-      results
-    ) {
-      if (error || results.affectedRows == 0) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  deleteProfile: async function(req, res, next) {
+    let results = await profileModels.deleteProfile(req.con, req.params.id);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   }
 };

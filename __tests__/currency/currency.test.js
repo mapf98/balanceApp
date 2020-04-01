@@ -22,7 +22,16 @@ describe("Currencies Test", () => {
       });
   });
 
-  test("Failure Check Method GET", done => {
+  test("Failure Check Method GET (1)", done => {
+    request(app)
+      .get("/balance/api/currencies/test")
+      .then(response => {
+        expect(response.statusCode).not.toBe(200);
+        done();
+      });
+  });
+
+  test("Failure Check Method GET (2)", done => {
     request(app)
       .get("/balance/api/currencies/-1")
       .then(response => {
@@ -103,7 +112,7 @@ describe("Currencies Test", () => {
 
   test("Failure Check Method DELETE", done => {
     request(app)
-      .delete(`/balance/api/currencies/delete/-1`)
+      .delete(`/balance/api/currencies/delete/test`)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();

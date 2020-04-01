@@ -1,25 +1,41 @@
 module.exports = {
-  getStatuses: function(con, callback) {
-    con.query("SELECT * FROM ESTATUS", callback);
+  getStatuses: function(con) {
+    return con.query("SELECT * FROM ESTATUS").catch(error => {
+      return new Error(error);
+    });
   },
-  getStatus: function(con, id, callback) {
-    con.query("SELECT * FROM ESTATUS WHERE status_id = ? ", [id], callback);
+  getStatus: function(con, id) {
+    return con
+      .query("SELECT * FROM ESTATUS WHERE status_id = $1 ", [id])
+      .catch(error => {
+        return new Error(error);
+      });
   },
-  createStatus: function(con, body, callback) {
-    con.query(
-      "INSERT INTO ESTATUS (status_name) VALUES (?);",
-      [body.status_name],
-      callback
-    );
+  createStatus: function(con, body) {
+    return con
+      .query(
+        "INSERT INTO ESTATUS (status_name) VALUES ($1) RETURNING status_id",
+        [body.status_name]
+      )
+      .catch(error => {
+        return new Error(error);
+      });
   },
-  updateStatus: function(con, id, body, callback) {
-    con.query(
-      "UPDATE ESTATUS SET status_name = ? WHERE status_id = ?;",
-      [body.status_name, id],
-      callback
-    );
+  updateStatus: function(con, id, body) {
+    return con
+      .result("UPDATE ESTATUS SET status_name = $1 WHERE status_id = $2;", [
+        body.status_name,
+        id
+      ])
+      .catch(error => {
+        return new Error(error);
+      });
   },
   deleteStatus: function(con, id, callback) {
-    con.query("DELETE FROM ESTATUS WHERE status_id = ?;", [id], callback);
+    return con
+      .result("DELETE FROM ESTATUS WHERE status_id = $1;", [id])
+      .catch(error => {
+        return new Error(error);
+      });
   }
 };

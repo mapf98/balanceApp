@@ -22,7 +22,16 @@ describe("Banks Test", () => {
       });
   });
 
-  test("Failure Check Method GET", done => {
+  test("Failure Check Method GET (1)", done => {
+    request(app)
+      .get("/balance/api/banks/test")
+      .then(response => {
+        expect(response.statusCode).not.toBe(200);
+        done();
+      });
+  });
+
+  test("Failure Check Method GET (2)", done => {
     request(app)
       .get("/balance/api/banks/-1")
       .then(response => {
@@ -99,7 +108,7 @@ describe("Banks Test", () => {
 
   test("Fail Check Method DELETE", done => {
     request(app)
-      .delete(`/balance/api/banks/delete/-1`)
+      .delete(`/balance/api/banks/delete/test`)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();

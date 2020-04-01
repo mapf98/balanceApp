@@ -1,67 +1,60 @@
 const currencyHistoryModels = require("../../models/currency_history/currency-history-models.js");
+const createError = require("http-errors");
 
 module.exports = {
-  getCurrenciesHistory: function(req, res, next) {
-    let currenciesHistory = [];
-    currencyHistoryModels.getCurrenciesHistory(req.con, function(
-      error,
-      results
-    ) {
-      currenciesHistory = results;
-      res.json({ data: currenciesHistory });
-    });
+  getCurrenciesHistory: async function(req, res, next) {
+    let results = await currencyHistoryModels.getCurrenciesHistory(req.con);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  getCurrencyHistory: function(req, res, next) {
-    currencyHistoryModels.getCurrencyHistory(req.con, req.params.id, function(
-      error,
-      results
-    ) {
-      let currencyHistory = {};
-      if (error || results.length == 0) {
-        next(error);
-      } else {
-        currencyHistory = results;
-        res.json({ data: currencyHistory });
-      }
-    });
+  getCurrencyHistory: async function(req, res, next) {
+    let results = await currencyHistoryModels.getCurrencyHistory(
+      req.con,
+      req.params.id
+    );
+    if (results.length === 0) {
+      next(createError(404, "Recurso NotFound"));
+    } else if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  createCurrencyHistory: function(req, res, next) {
-    currencyHistoryModels.createCurrencyHistory(req.con, req.body, function(
-      error,
-      results
-    ) {
-      if (error) {
-        next(error);
-      } else {
-        res.json({ status: "200", returning_id: results.insertId });
-      }
-    });
+  createCurrencyHistory: async function(req, res, next) {
+    let results = await currencyHistoryModels.createCurrencyHistory(
+      req.con,
+      req.body
+    );
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ status: "200", returning_id: results[0].currency_history_id });
+    }
   },
-  updateCurrencyHistory: function(req, res, next) {
-    currencyHistoryModels.updateCurrencyHistory(
+  updateCurrencyHistory: async function(req, res, next) {
+    let results = await currencyHistoryModels.updateCurrencyHistory(
       req.con,
       req.params.id,
-      req.body,
-      function(error) {
-        if (error) {
-          next(error);
-        } else {
-          res.sendStatus("200");
-        }
-      }
+      req.body
     );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   },
-  deleteCurrencyHistory: function(req, res, next) {
-    currencyHistoryModels.deleteCurrencyHistory(
+  deleteCurrencyHistory: async function(req, res, next) {
+    let results = await currencyHistoryModels.deleteCurrencyHistory(
       req.con,
-      req.params.id,
-      function(error, results) {
-        if (error || results.affectedRows == 0) {
-          next(error);
-        } else {
-          res.sendStatus("200");
-        }
-      }
+      req.params.id
     );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   }
 };

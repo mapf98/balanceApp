@@ -22,7 +22,16 @@ describe("Places Test", () => {
       });
   });
 
-  test("Failure Check Method GET", done => {
+  test("Failure Check Method GET (1)", done => {
+    request(app)
+      .get("/balance/api/places/test")
+      .then(response => {
+        expect(response.statusCode).not.toBe(200);
+        done();
+      });
+  });
+
+  test("Failure Check Method GET (2)", done => {
     request(app)
       .get("/balance/api/places/-1")
       .then(response => {
@@ -103,7 +112,7 @@ describe("Places Test", () => {
 
   test("Failure Check Method DELETE", done => {
     request(app)
-      .delete(`/balance/api/places/delete/-1`)
+      .delete(`/balance/api/places/delete/test`)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();

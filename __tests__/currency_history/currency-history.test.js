@@ -27,7 +27,17 @@ describe("/balance/api/currencies-history", () => {
       });
   });
 
-  test("Failure Check Method GET", done => {
+  test("Failure Check Method GET (1)", done => {
+    request(app)
+      .get("/balance/api/currencies-history/test")
+      .set("Authorization", "Bearer " + token)
+      .then(response => {
+        expect(response.statusCode).not.toBe(200);
+        done();
+      });
+  });
+
+  test("Failure Check Method GET (2)", done => {
     request(app)
       .get("/balance/api/currencies-history/-1")
       .set("Authorization", "Bearer " + token)
@@ -109,7 +119,7 @@ describe("/balance/api/currencies-history", () => {
 
   test("Failure Check Method DELETE", done => {
     request(app)
-      .delete(`/balance/api/currencies-history/delete/-1`)
+      .delete(`/balance/api/currencies-history/delete/test`)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();

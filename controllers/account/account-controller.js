@@ -1,68 +1,63 @@
 const accountModels = require("../../models/account/account-models.js");
+const createError = require("http-errors");
 
 module.exports = {
-  getAccounts: function(req, res) {
-    let accounts = [];
-    accountModels.getAccounts(req.con, function(error, results) {
-      accounts = results;
-      res.json({ data: accounts });
-    });
+  getAccounts: async function(req, res) {
+    let results = await accountModels.getAccounts(req.con);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  getAccount: function(req, res, next) {
-    accountModels.getAccount(req.con, req.params.id, function(error, results) {
-      let account = {};
-      if (error || results.length == 0) {
-        next(error);
-      } else {
-        account = results;
-        res.json({ data: account });
-      }
-    });
+  getAccount: async function(req, res, next) {
+    let results = await accountModels.getAccount(req.con, req.params.id);
+    if (results.length === 0) {
+      next(createError(404, "Recurso NotFound"));
+    } else if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  createAccount: function(req, res, next) {
-    accountModels.createAccount(req.con, req.body, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        res.json({ status: "200", returning_id: results.insertId });
-      }
-    });
+  createAccount: async function(req, res, next) {
+    let results = await accountModels.createAccount(req.con, req.body);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ status: "200", returning_id: results[0].account_id });
+    }
   },
-  updateAccount: function(req, res, next) {
-    accountModels.updateAccount(req.con, req.params.id, req.body, function(
-      error
-    ) {
-      if (error) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
-  },
-  changeStatusAccount: function(req, res, next) {
-    accountModels.changeStatusAccount(
+  updateAccount: async function(req, res, next) {
+    let results = await accountModels.updateAccount(
       req.con,
       req.params.id,
-      req.body,
-      function(error) {
-        if (error) {
-          next(error);
-        } else {
-          res.sendStatus("200");
-        }
-      }
+      req.body
     );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   },
-  deleteAccount: function(req, res, next) {
-    accountModels.deleteAccount(req.con, req.params.id, function(
-      error,
-      results
-    ) {
-      if (error || results.affectedRows == 0) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  changeStatusAccount: async function(req, res, next) {
+    let results = await accountModels.changeStatusAccount(
+      req.con,
+      req.params.id,
+      req.body
+    );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
+  },
+  deleteAccount: async function(req, res, next) {
+    let results = await accountModels.deleteAccount(req.con, req.params.id);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   }
 };

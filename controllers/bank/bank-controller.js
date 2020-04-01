@@ -1,49 +1,47 @@
 const bankModels = require("../../models/bank/bank-models.js");
+const createError = require("http-errors");
 
 module.exports = {
-  getBanks: function(req, res, next) {
-    let banks = [];
-    bankModels.getBanks(req.con, function(error, results) {
-      banks = results;
-      res.json({ data: banks });
-    });
+  getBanks: async function(req, res, next) {
+    let results = await bankModels.getBanks(req.con);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  getBank: function(req, res, next) {
-    bankModels.getBank(req.con, req.params.id, function(error, results) {
-      let bank = {};
-      if (error || results.length == 0) {
-        next(error);
-      } else {
-        bank = results;
-        res.json({ data: bank });
-      }
-    });
+  getBank: async function(req, res, next) {
+    let results = await bankModels.getBank(req.con, req.params.id);
+    if (results.length === 0) {
+      next(createError(404, "Recurso NotFound"));
+    } else if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  createBank: function(req, res, next) {
-    bankModels.createBank(req.con, req.body, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        res.json({ status: "200", returning_id: results.insertId });
-      }
-    });
+  createBank: async function(req, res, next) {
+    let results = await bankModels.createBank(req.con, req.body);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ status: "200", returning_id: results[0].bank_id });
+    }
   },
-  updateBank: function(req, res, next) {
-    bankModels.updateBank(req.con, req.params.id, req.body, function(error) {
-      if (error) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  updateBank: async function(req, res, next) {
+    let results = await bankModels.updateBank(req.con, req.params.id, req.body);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   },
-  deleteBank: function(req, res, next) {
-    bankModels.deleteBank(req.con, req.params.id, function(error, results) {
-      if (error || results.affectedRows == 0) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  deleteBank: async function(req, res, next) {
+    let results = await bankModels.deleteBank(req.con, req.params.id);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   }
 };

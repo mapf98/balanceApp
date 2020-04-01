@@ -1,25 +1,41 @@
 module.exports = {
-  getBanks: function(con, callback) {
-    con.query("SELECT * FROM BANCO", callback);
+  getBanks: function(con) {
+    return con.query("SELECT * FROM BANCO").catch(error => {
+      return new Error(error);
+    });
   },
-  getBank: function(con, id, callback) {
-    con.query("SELECT * FROM BANCO WHERE bank_id = ? ", [id], callback);
+  getBank: function(con, id) {
+    return con
+      .query("SELECT * FROM BANCO WHERE bank_id = $1", [id])
+      .catch(error => {
+        return new Error(error);
+      });
   },
-  createBank: function(con, body, callback) {
-    con.query(
-      "INSERT INTO BANCO (bank_name, fk_place_id) VALUES (?, ?);",
-      [body.bank_name, body.fk_place_id],
-      callback
-    );
+  createBank: function(con, body) {
+    return con
+      .query(
+        "INSERT INTO BANCO (bank_name, fk_place_id) VALUES ($1, $2) RETURNING bank_id",
+        [body.bank_name, body.fk_place_id]
+      )
+      .catch(error => {
+        return new Error(error);
+      });
   },
-  updateBank: function(con, id, body, callback) {
-    con.query(
-      "UPDATE BANCO SET bank_name = ?, fk_place_id = ? WHERE bank_id = ?;",
-      [body.bank_name, body.fk_place_id, id],
-      callback
-    );
+  updateBank: function(con, id, body) {
+    return con
+      .result(
+        "UPDATE BANCO SET bank_name = $1, fk_place_id = $2 WHERE bank_id = $3;",
+        [body.bank_name, body.fk_place_id, id]
+      )
+      .catch(error => {
+        return new Error(error);
+      });
   },
-  deleteBank: function(con, id, callback) {
-    con.query("DELETE FROM BANCO WHERE bank_id = ?;", [id], callback);
+  deleteBank: function(con, id) {
+    return con
+      .result("DELETE FROM BANCO WHERE bank_id = $1;", [id])
+      .catch(error => {
+        return new Error(error);
+      });
   }
 };

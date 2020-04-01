@@ -22,7 +22,16 @@ describe("Categories Test", () => {
       });
   });
 
-  test("Failure Check Method GET", done => {
+  test("Failure Check Method GET (1)", done => {
+    request(app)
+      .get("/balance/api/categories/test")
+      .then(response => {
+        expect(response.statusCode).not.toBe(200);
+        done();
+      });
+  });
+
+  test("Failure Check Method GET (2)", done => {
     request(app)
       .get("/balance/api/categories/-1")
       .then(response => {
@@ -95,7 +104,7 @@ describe("Categories Test", () => {
 
   test("Failure Check Method DELETE", done => {
     request(app)
-      .delete(`/balance/api/categories/delete/-1`)
+      .delete(`/balance/api/categories/delete/test`)
       .then(response => {
         expect(response.statusCode).not.toBe(200);
         done();

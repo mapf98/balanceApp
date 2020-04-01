@@ -1,57 +1,51 @@
 const categoryModels = require("../../models/category/category-models.js");
+const createError = require("http-errors");
 
 module.exports = {
-  getCategories: function(req, res, next) {
-    let categories = [];
-    categoryModels.getCategories(req.con, function(error, results) {
-      categories = results;
-      res.json({ data: categories });
-    });
+  getCategories: async function(req, res, next) {
+    let results = await categoryModels.getCategories(req.con);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  getCategory: function(req, res, next) {
-    categoryModels.getCategory(req.con, req.params.id, function(
-      error,
-      results
-    ) {
-      let category = {};
-      if (error || results.length == 0) {
-        next(error);
-      } else {
-        category = results;
-        res.json({ data: category });
-      }
-    });
+  getCategory: async function(req, res, next) {
+    let results = await categoryModels.getCategory(req.con, req.params.id);
+    if (results.length === 0) {
+      next(createError(404, "Recurso NotFound"));
+    } else if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  createCategory: function(req, res, next) {
-    categoryModels.createCategory(req.con, req.body, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        res.json({ status: "200", returning_id: results.insertId });
-      }
-    });
+  createCategory: async function(req, res, next) {
+    let results = await categoryModels.createCategory(req.con, req.body);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ status: "200", returning_id: results[0].category_id });
+    }
   },
-  updateCategory: function(req, res, next) {
-    categoryModels.updateCategory(req.con, req.params.id, req.body, function(
-      error
-    ) {
-      if (error) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  updateCategory: async function(req, res, next) {
+    let results = await categoryModels.updateCategory(
+      req.con,
+      req.params.id,
+      req.body
+    );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   },
-  deleteCategory: function(req, res, next) {
-    categoryModels.deleteCategory(req.con, req.params.id, function(
-      error,
-      results
-    ) {
-      if (error || results.affectedRows == 0) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  deleteCategory: async function(req, res, next) {
+    let results = await categoryModels.deleteCategory(req.con, req.params.id);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   }
 };

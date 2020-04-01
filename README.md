@@ -1,11 +1,11 @@
-# BalanceApp API (v1.5.0)
+# BalanceApp API (v2.0.0)
 
 API para Balance, aplicación de finanzas personales.
 
 ## Resumen de la API ✔
 
 * Modelo de datos definido y codificado.
-* CRUD básico de todas las entidades en el modelo de datos.
+* CRUD básico de todas las entidades en el modelo de datos adecuado a una BD con pg-promise.
 * Logger en consola y archivo externo.
 * Error Handler de express integrado.
 * Se integró el módulo Helmet para seguridad y evitar ataques en las peticiones.
@@ -21,7 +21,7 @@ _Estos son los pre-requisitos necesarios para ejecutar el proyecto y realizar pr
 
 * Git
 * NODE y npm
-* MySQL
+* Postgres
 * VSCode o cualquier editor de texto
 * Postman o cualquier plataforma de consulta para una API REST con verbos http.
 
@@ -54,6 +54,11 @@ _Estas instrucciones te permitirán ejecutar las pruebas unitarias de la API, en
 * Ejecuta el siguiente código para ejecutar las pruebas unitarias y obtener la cobertura de código actual:
 ```
 npm run test
+```
+
+* Ejecuta el siguiente código para ejecutar una prueba para un archivo particular:
+```
+npx jest <nombre del archivo.test.js> --detectOpenHandles
 ```
 
 #### Pruebas de lógica de aplicación ⌨️
@@ -104,6 +109,7 @@ _Por definir_
 * Axios
 * node-cron
 * cros
+* pg-promise
 
 ## Wiki 📖
 

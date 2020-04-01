@@ -1,57 +1,51 @@
 const feedbackModels = require("../../models/feedback/feedback-models.js");
+const createError = require("http-errors");
 
 module.exports = {
-  getFeedbacks: function(req, res, next) {
-    let feedbacks = [];
-    feedbackModels.getFeedbacks(req.con, function(error, results) {
-      feedbacks = results;
-      res.json({ data: feedbacks });
-    });
+  getFeedbacks: async function(req, res, next) {
+    let results = await feedbackModels.getFeedbacks(req.con);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  getFeedback: function(req, res, next) {
-    feedbackModels.getFeedback(req.con, req.params.id, function(
-      error,
-      results
-    ) {
-      let feedback = {};
-      if (error || results.length == 0) {
-        next(error);
-      } else {
-        feedback = results;
-        res.json({ data: feedback });
-      }
-    });
+  getFeedback: async function(req, res, next) {
+    let results = await feedbackModels.getFeedback(req.con, req.params.id);
+    if (results.length === 0) {
+      next(createError(404, "Recurso NotFound"));
+    } else if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  createFeedback: function(req, res, next) {
-    feedbackModels.createFeedback(req.con, req.body, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        res.json({ status: "200", returning_id: results.insertId });
-      }
-    });
+  createFeedback: async function(req, res, next) {
+    let results = await feedbackModels.createFeedback(req.con, req.body);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ status: "200", returning_id: results[0].feedback_id });
+    }
   },
-  updateFeedback: function(req, res, next) {
-    feedbackModels.updateFeedback(req.con, req.params.id, req.body, function(
-      error
-    ) {
-      if (error) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  updateFeedback: async function(req, res, next) {
+    let results = await feedbackModels.updateFeedback(
+      req.con,
+      req.params.id,
+      req.body
+    );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   },
-  deleteFeedback: function(req, res, next) {
-    feedbackModels.deleteFeedback(req.con, req.params.id, function(
-      error,
-      results
-    ) {
-      if (error || results.affectedRows == 0) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  deleteFeedback: async function(req, res, next) {
+    let results = await feedbackModels.deleteFeedback(req.con, req.params.id);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   }
 };

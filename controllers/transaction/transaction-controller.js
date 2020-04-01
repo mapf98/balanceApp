@@ -1,63 +1,57 @@
 const transactionModels = require("../../models/transaction/transaction-models.js");
+const createError = require("http-errors");
 
 module.exports = {
-  getTransactions: function(req, res, next) {
-    let transactions = [];
-    transactionModels.getTransactions(req.con, function(error, results) {
-      transactions = results;
-      res.json({ data: transactions });
-    });
+  getTransactions: async function(req, res, next) {
+    let results = await transactionModels.getTransactions(req.con);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  getTransaction: function(req, res, next) {
-    transactionModels.getTransaction(req.con, req.params.id, function(
-      error,
-      results
-    ) {
-      let transaction = {};
-      if (error || results.length == 0) {
-        next(error);
-      } else {
-        transaction = results;
-        res.json({ data: transaction });
-      }
-    });
+  getTransaction: async function(req, res, next) {
+    let results = await transactionModels.getTransaction(
+      req.con,
+      req.params.id
+    );
+    if (results.length === 0) {
+      next(createError(404, "Recurso NotFound"));
+    } else if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  createTransaction: function(req, res, next) {
-    transactionModels.createTransaction(req.con, req.body, function(
-      error,
-      results
-    ) {
-      if (error) {
-        next(error);
-      } else {
-        res.json({ status: "200", returning_id: results.insertId });
-      }
-    });
+  createTransaction: async function(req, res, next) {
+    let results = await transactionModels.createTransaction(req.con, req.body);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ status: "200", returning_id: results[0].transaction_id });
+    }
   },
-  updateTransaction: function(req, res, next) {
-    transactionModels.updateTransaction(
+  updateTransaction: async function(req, res, next) {
+    let results = await transactionModels.updateTransaction(
       req.con,
       req.params.id,
-      req.body,
-      function(error) {
-        if (error) {
-          next(error);
-        } else {
-          res.sendStatus("200");
-        }
-      }
+      req.body
     );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   },
-  deleteTransaction: function(req, res, next) {
-    transactionModels.deleteTransaction(req.con, req.params.id, function(
-      error,
-      results
-    ) {
-      if (error || results.affectedRows == 0) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  deleteTransaction: async function(req, res, next) {
+    let results = await transactionModels.deleteTransaction(
+      req.con,
+      req.params.id
+    );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   }
 };

@@ -1,49 +1,51 @@
 const placeModels = require("../../models/place/place-models.js");
+const createError = require("http-errors");
 
 module.exports = {
-  getPlaces: function(req, res, next) {
-    let places = [];
-    placeModels.getPlaces(req.con, function(error, results) {
-      places = results;
-      res.json({ data: places });
-    });
+  getPlaces: async function(req, res, next) {
+    let results = await placeModels.getPlaces(req.con);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  getPlace: function(req, res, next) {
-    placeModels.getPlace(req.con, req.params.id, function(error, results) {
-      let place = {};
-      if (error || results.length == 0) {
-        next(error);
-      } else {
-        place = results;
-        res.json({ data: place });
-      }
-    });
+  getPlace: async function(req, res, next) {
+    let results = await placeModels.getPlace(req.con, req.params.id);
+    if (results.length === 0) {
+      next(createError(404, "Recurso NotFound"));
+    } else if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  createPlace: function(req, res, next) {
-    placeModels.createPlace(req.con, req.body, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        res.json({ status: "200", returning_id: results.insertId });
-      }
-    });
+  createPlace: async function(req, res, next) {
+    let results = await placeModels.createPlace(req.con, req.body);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ status: "200", returning_id: results[0].place_id });
+    }
   },
-  updatePlace: function(req, res, next) {
-    placeModels.updatePlace(req.con, req.params.id, req.body, function(error) {
-      if (error) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  updatePlace: async function(req, res, next) {
+    let results = await placeModels.updatePlace(
+      req.con,
+      req.params.id,
+      req.body
+    );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   },
-  deletePlace: function(req, res, next) {
-    placeModels.deletePlace(req.con, req.params.id, function(error, results) {
-      if (error || results.affectedRows == 0) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  deletePlace: async function(req, res, next) {
+    let results = await placeModels.deletePlace(req.con, req.params.id);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   }
 };

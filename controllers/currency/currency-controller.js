@@ -2,7 +2,7 @@ const currencyModels = require("../../models/currency/currency-models.js");
 const createError = require("http-errors");
 
 module.exports = {
-  getCurrencies: async function(req, res) {
+  getCurrencies: async function(req, res, next) {
     let results = await currencyModels.getCurrencies(req.con);
     if (results instanceof Error) {
       next(createError(500, `${results.message}`));
@@ -33,7 +33,6 @@ module.exports = {
     if (results instanceof Error || results.rowCount == 0) {
       next(createError(500, `${results.message}`));
     } else {
-      console.log(results);
       res.sendStatus("200");
     }
   },

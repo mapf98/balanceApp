@@ -1,51 +1,51 @@
 const statusModels = require("../../models/estatus/estatus-models.js");
+const createError = require("http-errors");
 
 module.exports = {
-  getStatuses: function(req, res, next) {
-    let statuses = [];
-    statusModels.getStatuses(req.con, function(error, results) {
-      statuses = results;
-      res.json({ data: statuses });
-    });
+  getStatuses: async function(req, res, next) {
+    let results = await statusModels.getStatuses(req.con);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  getStatus: function(req, res, next) {
-    statusModels.getStatus(req.con, req.params.id, function(error, results) {
-      let status = {};
-      if (error || results.length == 0) {
-        next(error);
-      } else {
-        status = results;
-        res.json({ data: status });
-      }
-    });
+  getStatus: async function(req, res, next) {
+    let results = await statusModels.getStatus(req.con, req.params.id);
+    if (results.length === 0) {
+      next(createError(404, "Recurso NotFound"));
+    } else if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ data: results });
+    }
   },
-  createStatus: function(req, res, next) {
-    statusModels.createStatus(req.con, req.body, function(error, results) {
-      if (error) {
-        next(error);
-      } else {
-        res.json({ status: "200", returning_id: results.insertId });
-      }
-    });
+  createStatus: async function(req, res, next) {
+    let results = await statusModels.createStatus(req.con, req.body);
+    if (results instanceof Error) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.json({ status: "200", returning_id: results[0].status_id });
+    }
   },
-  updateStatus: function(req, res, next) {
-    statusModels.updateStatus(req.con, req.params.id, req.body, function(
-      error
-    ) {
-      if (error) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  updateStatus: async function(req, res, next) {
+    let results = await statusModels.updateStatus(
+      req.con,
+      req.params.id,
+      req.body
+    );
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   },
-  deleteStatus: function(req, res, next) {
-    statusModels.deleteStatus(req.con, req.params.id, function(error, results) {
-      if (error || results.affectedRows == 0) {
-        next(error);
-      } else {
-        res.sendStatus("200");
-      }
-    });
+  deleteStatus: async function(req, res, next) {
+    let results = await statusModels.deleteStatus(req.con, req.params.id);
+    if (results instanceof Error || results.rowCount == 0) {
+      next(createError(500, `${results.message}`));
+    } else {
+      res.sendStatus("200");
+    }
   }
 };

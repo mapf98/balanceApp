@@ -27,7 +27,17 @@ describe("Profiles Test", () => {
       });
   });
 
-  test("Failure Check Method GET", done => {
+  test("Failure Check Method GET (1)", done => {
+    request(app)
+      .get("/balance/api/profiles/test")
+      .set("Authorization", "Bearer " + token)
+      .then(response => {
+        expect(response.statusCode).not.toBe(200);
+        done();
+      });
+  });
+
+  test("Failure Check Method GET (2)", done => {
     request(app)
       .get("/balance/api/profiles/-1")
       .set("Authorization", "Bearer " + token)
@@ -122,7 +132,7 @@ describe("Profiles Test", () => {
 
   test("Failure Check Method DELETE", done => {
     request(app)
-      .delete(`/balance/api/profiles/delete/-1`)
+      .delete(`/balance/api/profiles/delete/test`)
       .set("Authorization", "Bearer " + token)
       .then(response => {
         expect(response.statusCode).not.toBe(200);

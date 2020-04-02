@@ -94,7 +94,7 @@ npx prettier --check "<ubicación del archivo/nombre del archivo.js>"
 
 ## Despliegue 📦
 
-Visita la API desplegada en Heroku [API Balance](https://api-balance.herokuapp.com/);
+Visita la API desplegada en Heroku [API Balance](https://api-balance.herokuapp.com/)
 
 _¿Cómo se desplegó la aplicación en Heroku?_
 
@@ -119,7 +119,7 @@ heroku logs --tail
 
 * Primero se añade el addon de Heroku Postgres al proyecto actual.
 * Luego tomamos la info que se proporciona a través de la app para crear una conexión desde el pgAdmin y así poder adminstrar nuestra BD en nuestro ordenador.
-* Al realizar ya podremos disponer de la misma para su uso a través de la variable de entorno DATABASE_URL la cual se configura automaticamente al añadir la extensión.
+* Al realizar esto ya podremos disponer de la misma para su uso a través de la variable de entorno DATABASE_URL la cual se configura automaticamente al añadir la extensión.
 
 **Nota**: para lograr que la API y la BD se integraran de manera adecuada se realizó una configuración super importante para el manejor de certificados SSL a través de HTTPS. A continuación se deja la configuración del pg-promise para futuros casos.
 ```

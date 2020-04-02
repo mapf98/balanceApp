@@ -52,11 +52,13 @@ npm start
 _Estas instrucciones te permitirán ejecutar las pruebas unitarias de la API, en estas se podrá verificar que cualquier parte del código ha sido probada de manera atómica y particular._
 
 * Ejecuta el siguiente código para ejecutar las pruebas unitarias y obtener la cobertura de código actual:
+
 ```
 npm run test
 ```
 
 * Ejecuta el siguiente código para ejecutar una prueba para un archivo particular:
+
 ```
 npx jest <nombre del archivo.test.js> --detectOpenHandles
 ```
@@ -66,11 +68,13 @@ npx jest <nombre del archivo.test.js> --detectOpenHandles
 _Estas instrucciones te permitirán ejecutar las pruebas necesarias para determinar errores en la lógica del proyecto, es decir, loops infinitos, variables no utilizadas, condicionales duplicados, etc._
 
 * Ejecuta el siguiente código para evaluar un archivo específico:
+
 ```
 npx eslint <ubicación del archivo/nombre del archivo.js>
 ```
 
 * Para arreglar los errores en el archivo puedes hacerlo de dos formas: con tu editor de código o con la línea de comandos:
+
 ```
 npx eslint --fix <ubicación del archivo/nombre del archivo.js>
 ```
@@ -82,6 +86,7 @@ npx eslint --fix <ubicación del archivo/nombre del archivo.js>
 _Estas instrucciones te permitirán ejecutar las pruebas necesarias para determinar si el código escrito cumple con las normas de estilo establecidas._
 
 * Ejecuta el siguiente código para evaluar un archivo específico:
+
 ```
 npx prettier --check "<ubicación del archivo/nombre del archivo.js>"
 ```
@@ -89,7 +94,43 @@ npx prettier --check "<ubicación del archivo/nombre del archivo.js>"
 
 ## Despliegue 📦
 
-_Por definir_
+Visita la API desplegada en Heroku [API Balance](https://api-balance.herokuapp.com/);
+
+_¿Cómo se desplegó la aplicación en Heroku?_
+
+#### Despliegue de la API en Heroku
+
+* Primero se crea una cuenta en Heroku y se crea una app.
+* Luego se tiene que configurar Heroku como remoto, tal cual como si fuera un repositorio.
+* Paso siguiente se tienen que verificar todos los elementos antes de desplegar.
+* Al tener el proyecto verificado se hace un push a heroku de la rama donde tengas el proyecto actualmente.
+* Después se genera la aplicación y se puede verificar a través del link que te proporciona al final de la tarea.
+
+_Elementos importantes a considerar:_
+
+* Las variables de entorno deben definirse a través de la plataforma de Heroku, por lo tanto se debe ir a settings del proyecto y configurar las mismas para su uso, esto debido a que el .env no se sube durante el push.
+* Se puede usar el siguiente comando para verificar los logs actuales de la versión desplegada:
+
+```
+heroku logs --tail
+```
+
+#### Despliegue de la BD en Heroku
+
+* Primero se añade el addon de Heroku Postgres al proyecto actual.
+* Luego tomamos la info que se proporciona a través de la app para crear una conexión desde el pgAdmin y así poder adminstrar nuestra BD en nuestro ordenador.
+* Al realizar ya podremos disponer de la misma para su uso a través de la variable de entorno DATABASE_URL la cual se configura automaticamente al añadir la extensión.
+
+**Nota**: para lograr que la API y la BD se integraran de manera adecuada se realizó una configuración super importante para el manejor de certificados SSL a través de HTTPS. A continuación se deja la configuración del pg-promise para futuros casos.
+```
+pgp({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false,
+        mode: require
+    }
+})
+```
 
 ## Construido con 🛠️
 

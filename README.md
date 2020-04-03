@@ -94,7 +94,7 @@ npx prettier --check "<ubicación del archivo/nombre del archivo.js>"
 
 ## Despliegue 📦
 
-Visita la API desplegada en Heroku [API Balance](https://api-balance.herokuapp.com/)
+Visita la API desplegada en Heroku para una petición GET de lugares [API Balance - Places](https://api-balance.herokuapp.com/balance/api/places)
 
 _¿Cómo se desplegó la aplicación en Heroku?_
 
@@ -173,6 +173,7 @@ _Por los momentos no hay sistemas por desarrollar_
 #### Configuraciones de proyecto
 
 * Agregar etiqueta de versiones a la API en el README.
+* Agregar el Scheduler a Heroku para el sistema de moneda automático.
 
 #### Mejoras en BD
 

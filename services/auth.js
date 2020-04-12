@@ -3,7 +3,7 @@ const moment = require("moment");
 
 function createToken(user) {
   const payload = {
-    user_id: user.user_id,
+    user_id: user,
     iat: moment(),
     exp: moment().add(1, "day")
   };
@@ -25,7 +25,7 @@ function validateToken(req, res, next) {
     return res.status(401).send({ message: "Token expirado" });
   }
 
-  req.user = payload.sub;
+  req.user_id = payload.user_id;
   next();
 }
 

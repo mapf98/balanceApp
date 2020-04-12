@@ -173,7 +173,7 @@ _Por los momentos no hay sistemas por desarrollar_
 #### Configuraciones de proyecto
 
 * Agregar etiqueta de versiones a la API en el README.
-* Agregar el Scheduler a Heroku para el sistema de moneda automático.
+* Agregar el Scheduler a Heroku para el sistema de moneda automático (por los momentos no se podrá incluir por falta de recursos)
 
 #### Mejoras en BD
 

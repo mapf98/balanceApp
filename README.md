@@ -165,6 +165,7 @@ Se usará [SemVer](http://semver.org/) para el versionado. Para todas las versio
 #### API
 
 * En versiones anteriores agregar el .gitignore, eliminar el node_modules junto con el .lock y el .env.
+* Revisar el uso de /static.
 
 #### Sistemas por desarrollar
 

@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const bankController = require("../controllers/bank/bank-controller.js");
-const userController = require("../controllers/user/user-controller.js");
-const currencyController = require("../controllers/currency/currency-controller.js");
-const accountController = require("../controllers/account/account-controller.js");
-const transactionController = require("../controllers/transaction/transaction-controller.js");
-const statusController = require("../controllers/estatus/estatus-controller.js");
-const currencyHistoryController = require("../controllers/currency_history/currency-history-controller.js");
-const feedbackController = require("../controllers/feedback/feedback-controller.js");
-const placeController = require("../controllers/place/place-controller.js");
-const profileController = require("../controllers/profile/profile-controller.js");
-const categoryController = require("../controllers/category/category-controller.js");
+const bankController = require("../domains/bank/bank-controller.js");
+const userController = require("../domains/user/user-controller.js");
+const currencyController = require("../domains/currency/currency-controller.js");
+const accountController = require("../domains/account/account-controller.js");
+const transactionController = require("../domains/transaction/transaction-controller.js");
+const statusController = require("../domains/status/status-controller.js");
+const currencyHistoryController = require("../domains/currency_history/currency-history-controller.js");
+const feedbackController = require("../domains/feedback/feedback-controller.js");
+const placeController = require("../domains/place/place-controller.js");
+const profileController = require("../domains/profile/profile-controller.js");
+const categoryController = require("../domains/category/category-controller.js");
 const auth = require("../services/auth.js");
 
 //CRUD USUARIO

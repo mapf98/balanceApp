@@ -15,7 +15,7 @@ const axios = require("axios");
 const moment = require("moment");
 const cors = require("cors");
 
-app.use(cors());
+//app.use(cors());
 
 app.use(compression());
 app.use(helmet());
@@ -114,17 +114,5 @@ cron.schedule(
     timezone: "America/Caracas"
   }
 );
-
-// production error handler
-// no stacktraces leaked to user
-// app.use(function(err, req, res) {
-//   res.status(err.status || 500);
-//   res.json({
-//     errors: {
-//       message: err.message,
-//       error: {}
-//     }
-//   });
-// });
 
 module.exports = app;

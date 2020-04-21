@@ -15,7 +15,7 @@ const axios = require("axios");
 const moment = require("moment");
 const cors = require("cors");
 
-//app.use(cors());
+app.use(cors());
 
 app.use(compression());
 app.use(helmet());

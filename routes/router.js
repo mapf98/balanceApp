@@ -12,15 +12,26 @@ const placeController = require("../domains/place/place-controller.js");
 const profileController = require("../domains/profile/profile-controller.js");
 const categoryController = require("../domains/category/category-controller.js");
 const auth = require("../services/auth.js");
+const snake = require("../services/snakeCase.js");
 
 //CRUD USUARIO
 router.get("/users", auth.validateToken, userController.getUsers);
 router.get("/users/:id", auth.validateToken, userController.getUser);
-router.post("/users/create", userController.createUser);
-router.put("/users/update/:id", auth.validateToken, userController.updateUser);
+router.post(
+  "/users/create",
+  snake.convertToSnakeCase,
+  userController.createUser
+);
+router.put(
+  "/users/update/:id",
+  auth.validateToken,
+  snake.convertToSnakeCase,
+  userController.updateUser
+);
 router.put(
   "/users/change-status/:id",
   auth.validateToken,
+  snake.convertToSnakeCase,
   userController.changeStatusUser
 );
 router.delete(
@@ -32,15 +43,31 @@ router.delete(
 //CRUD BANCO
 router.get("/banks", bankController.getBanks);
 router.get("/banks/:id", bankController.getBank);
-router.post("/banks/create", bankController.createBank);
-router.put("/banks/update/:id", bankController.updateBank);
+router.post(
+  "/banks/create",
+  snake.convertToSnakeCase,
+  bankController.createBank
+);
+router.put(
+  "/banks/update/:id",
+  snake.convertToSnakeCase,
+  bankController.updateBank
+);
 router.delete("/banks/delete/:id", bankController.deleteBank);
 
 //CRUD MONEDA
 router.get("/currencies", currencyController.getCurrencies);
 router.get("/currencies/:id", currencyController.getCurrency);
-router.post("/currencies/create", currencyController.createCurrency);
-router.put("/currencies/update/aode", currencyController.updateAODECurrency);
+router.post(
+  "/currencies/create",
+  snake.convertToSnakeCase,
+  currencyController.createCurrency
+);
+router.put(
+  "/currencies/update/aode",
+  snake.convertToSnakeCase,
+  currencyController.updateAODECurrency
+);
 router.delete("/currencies/delete/:id", currencyController.deleteCurrency);
 
 //CRUD CUENTA
@@ -49,16 +76,19 @@ router.get("/accounts/:id", auth.validateToken, accountController.getAccount);
 router.post(
   "/accounts/create",
   auth.validateToken,
+  snake.convertToSnakeCase,
   accountController.createAccount
 );
 router.put(
   "/accounts/update/:id",
   auth.validateToken,
+  snake.convertToSnakeCase,
   accountController.updateAccount
 );
 router.put(
   "/accounts/change-status/:id",
   auth.validateToken,
+  snake.convertToSnakeCase,
   accountController.changeStatusAccount
 );
 router.delete(
@@ -81,6 +111,7 @@ router.get(
 router.post(
   "/transactions/create",
   auth.validateToken,
+  snake.convertToSnakeCase,
   transactionController.createTransaction
 );
 router.put(
@@ -97,8 +128,16 @@ router.delete(
 //CRUD ESTATUS
 router.get("/statuses", statusController.getStatuses);
 router.get("/statuses/:id", statusController.getStatus);
-router.post("/statuses/create", statusController.createStatus);
-router.put("/statuses/update/:id", statusController.updateStatus);
+router.post(
+  "/statuses/create",
+  snake.convertToSnakeCase,
+  statusController.createStatus
+);
+router.put(
+  "/statuses/update/:id",
+  snake.convertToSnakeCase,
+  statusController.updateStatus
+);
 router.delete("/statuses/delete/:id", statusController.deleteStatus);
 
 //CRUD HISTORIAL_MONEDA
@@ -114,10 +153,12 @@ router.get(
 );
 router.post(
   "/currencies-history/create",
+  snake.convertToSnakeCase,
   currencyHistoryController.createCurrencyHistory
 );
 router.put(
   "/currencies-history/update/:id",
+  snake.convertToSnakeCase,
   currencyHistoryController.updateCurrencyHistory
 );
 router.delete(
@@ -135,11 +176,13 @@ router.get(
 router.post(
   "/feedbacks/create",
   auth.validateToken,
+  snake.convertToSnakeCase,
   feedbackController.createFeedback
 );
 router.put(
   "/feedbacks/update/:id",
   auth.validateToken,
+  snake.convertToSnakeCase,
   feedbackController.updateFeedback
 );
 router.delete(
@@ -151,8 +194,16 @@ router.delete(
 //CRUD LUGAR
 router.get("/places", placeController.getPlaces);
 router.get("/places/:id", placeController.getPlace);
-router.post("/places/create", placeController.createPlace);
-router.put("/places/update/:id", placeController.updatePlace);
+router.post(
+  "/places/create",
+  snake.convertToSnakeCase,
+  placeController.createPlace
+);
+router.put(
+  "/places/update/:id",
+  snake.convertToSnakeCase,
+  placeController.updatePlace
+);
 router.delete("/places/delete/:id", placeController.deletePlace);
 
 //CRUD PROFILE
@@ -161,11 +212,13 @@ router.get("/profiles/:id", auth.validateToken, profileController.getProfile);
 router.post(
   "/profiles/create",
   auth.validateToken,
+  snake.convertToSnakeCase,
   profileController.createProfile
 );
 router.put(
   "/profiles/update/:id",
   auth.validateToken,
+  snake.convertToSnakeCase,
   profileController.updateProfile
 );
 router.delete(
@@ -177,8 +230,16 @@ router.delete(
 //CRUD CATEGORY
 router.get("/categories", categoryController.getCategories);
 router.get("/categories/:id", categoryController.getCategory);
-router.post("/categories/create", categoryController.createCategory);
-router.put("/categories/update/:id", categoryController.updateCategory);
+router.post(
+  "/categories/create",
+  snake.convertToSnakeCase,
+  categoryController.createCategory
+);
+router.put(
+  "/categories/update/:id",
+  snake.convertToSnakeCase,
+  categoryController.updateCategory
+);
 router.delete("/categories/delete/:id", categoryController.deleteCategory);
 
 module.exports = router;

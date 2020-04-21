@@ -12,6 +12,7 @@ module.exports = {
       });
   },
   createUser: function(con, body) {
+    console.log(body);
     return con
       .query(
         "INSERT INTO USUARIO (user_first_name, user_last_name, user_email, user_alias, user_birthdate, user_password, user_create_date, fk_status_id) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8) RETURNING user_id",

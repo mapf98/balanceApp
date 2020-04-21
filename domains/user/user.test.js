@@ -13,9 +13,7 @@ describe("Users Test", () => {
       user_email: "test@gmail.com",
       user_alias: "t98",
       user_birthdate: "1998-04-03",
-      user_password: "admin1",
-      user_create_date: "2020-03-08",
-      fk_status_id: 1
+      user_password: "admin1"
     };
     request(app)
       .post("/balance/api/users/create")
